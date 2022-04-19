@@ -1,10 +1,7 @@
 const API = "https://mock-api.driven.com.br/api/v6/buzzquizz";
-const quizzes = []
-
-obterQuizzes();
+let quizzes = []
 
 function obterQuizzes(){
-    alert("OPA")
     axios.get(`${API}/quizzes`).then(armazenarQuizzes);
 }
 
