@@ -3,7 +3,9 @@ body{
     font-family: 'Roboto', sans-serif;
     background-color: #E5E5E5;
 }
-
+ul::-webkit-scrollbar{
+    display: none;
+}
 h1{
     font-size: 20px;
     color: #000000;
