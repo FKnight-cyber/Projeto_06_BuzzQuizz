@@ -28,3 +28,7 @@ function renderizarQuizzes(){
         `
     }
 }
+
+function selectQuizz(elemento){
+    
+}

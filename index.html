@@ -18,15 +18,64 @@
         <div class="topo">BuzzQuizz</div>
     </header>
     <main>
+        <div class="answerQuizz hidden">
+            <div><img src="assets/images/pacman.jpeg" alt="" srcset=""></div>
+            <ul class="perguntas">
+                <li class="pergunta">
+                    <div class="questao">Em qual animal olho-tonto Moody transfigurou Malfoy</div>
+                    <div class="opcoes">
+                        <div class="opcao">
+                            <img src="assets/images/pacman.jpeg" alt="" srcset="">
+                            <div class="resposta">Rato</div>
+                        </div>
+                        <div class="opcao">
+                            <img src="assets/images/pacman.jpeg" alt="" srcset="">
+                            <div class="resposta">Rato</div>
+                        </div>
+                        <div class="opcao">
+                            <img src="assets/images/pacman.jpeg" alt="" srcset="">
+                            <div class="resposta">Rato</div>
+                        </div>
+                        <div class="opcao">
+                            <img src="assets/images/pacman.jpeg" alt="" srcset="">
+                            <div class="resposta">Rato</div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="pergunta">
+                    <div class="questao">Em qual animal olho-tonto Moody transfigurou Malfoy</div>
+                    <div class="opcoes">
+                        <div class="opcao">
+                            <img src="assets/images/pacman.jpeg" alt="" srcset="">
+                        </div>
+                        <div class="opcao">
+                            <img src="assets/images/pacman.jpeg" alt="" srcset="">
+                        </div>
+                        <div class="opcao">
+                            <img src="assets/images/pacman.jpeg" alt="" srcset="">
+                        </div>
+                        <div class="opcao">
+                            <img src="assets/images/pacman.jpeg" alt="" srcset="">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
         <ul class="yourQuizz">
             <div class="quizzBoxStatus"><h4>Você não criou nenhum quizz ainda :(</h4></div>
         </ul>
+
         <div class="quizzBox">
                 <button class="createQuizz">Criar Quizz</button>
         </div>
-        <div class="subtitle"><h1>Todos os Quizzes</h1></div>
+
+        <div class="subtitle">
+            <h1>Todos os Quizzes</h1>
+        </div>
         <ul class="quizzContainer">
-            <li class="quizz" >
+            <li class="quizz" onclick="selectQuizz(this)">
                 <img src="assets/images/pacman.jpeg" alt="" srcset="">
                 <div class="quizzTitle"><h2>O quanto você sabe sobre o pacman?</h2></div>
             </li>
@@ -50,8 +99,9 @@
                 <img src="assets/images/pacman.jpeg" alt="" srcset="">
                 <div class="quizzTitle"><h2>O quanto você sabe sobre o pacman?</h2></div>
             </li>
-            
+
         </ul>
+
     </main> 
 
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
