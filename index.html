@@ -82,46 +82,92 @@
             </ul>
         </div>
         
-
-        <ul class="yourQuizz">
-            <div class="quizzBoxStatus"><h4>Você não criou nenhum quizz ainda :(</h4></div>
-        </ul>
-
-        <div class="quizzBox">
-                <button class="createQuizz">Criar Quizz</button>
+        <div class="maincontent hidden">
+            <ul class="yourQuizz">
+                <div class="quizzBoxStatus"><h4>Você não criou nenhum quizz ainda :(</h4></div>
+            </ul>
+    
+            <div class="quizzBox">
+                    <button class="createQuizz" onclick="criarQuizz()">Criar Quizz</button>
+            </div>
+    
+            <div class="subtitle">
+                <h1>Todos os Quizzes</h1>
+            </div>
+            <ul class="quizzContainer">
+                <li class="quizz" onclick="selectQuizz(this)">
+                    <img src="assets/images/pacman.jpeg" alt="" srcset="">
+                    <div class="quizzTitle"><h2>O quanto você sabe sobre o pacman?</h2></div>
+                </li>
+                <li class="quizz">
+                    <img src="assets/images/pacman.jpeg" alt="" srcset="">
+                    <div class="quizzTitle"><h2>O quanto você sabe sobre o pacman?</h2></div>
+                </li>
+                <li class="quizz">
+                    <img src="assets/images/pacman.jpeg" alt="" srcset="">
+                    <div class="quizzTitle"><h2>O quanto você sabe sobre o pacman?</h2></div>
+                </li>
+                <li class="quizz">
+                    <img src="assets/images/pacman.jpeg" alt="" srcset="">
+                    <div class="quizzTitle"><h2>O quanto você sabe sobre o pacman?</h2></div>
+                </li>
+                <li class="quizz">
+                    <img src="assets/images/pacman.jpeg" alt="" srcset="">
+                    <div class="quizzTitle"><h2>O quanto você sabe sobre o pacman?</h2></div>
+                </li>
+                <li class="quizz">
+                    <img src="assets/images/pacman.jpeg" alt="" srcset="">
+                    <div class="quizzTitle"><h2>O quanto você sabe sobre o pacman?</h2></div>
+                </li>
+    
+            </ul>
         </div>
 
-        <div class="subtitle">
-            <h1>Todos os Quizzes</h1>
-        </div>
-        <ul class="quizzContainer">
-            <li class="quizz" onclick="selectQuizz(this)">
-                <img src="assets/images/pacman.jpeg" alt="" srcset="">
-                <div class="quizzTitle"><h2>O quanto você sabe sobre o pacman?</h2></div>
-            </li>
-            <li class="quizz">
-                <img src="assets/images/pacman.jpeg" alt="" srcset="">
-                <div class="quizzTitle"><h2>O quanto você sabe sobre o pacman?</h2></div>
-            </li>
-            <li class="quizz">
-                <img src="assets/images/pacman.jpeg" alt="" srcset="">
-                <div class="quizzTitle"><h2>O quanto você sabe sobre o pacman?</h2></div>
-            </li>
-            <li class="quizz">
-                <img src="assets/images/pacman.jpeg" alt="" srcset="">
-                <div class="quizzTitle"><h2>O quanto você sabe sobre o pacman?</h2></div>
-            </li>
-            <li class="quizz">
-                <img src="assets/images/pacman.jpeg" alt="" srcset="">
-                <div class="quizzTitle"><h2>O quanto você sabe sobre o pacman?</h2></div>
-            </li>
-            <li class="quizz">
-                <img src="assets/images/pacman.jpeg" alt="" srcset="">
-                <div class="quizzTitle"><h2>O quanto você sabe sobre o pacman?</h2></div>
-            </li>
-
-        </ul>
-
+        <aside>
+            <div class="inputs hidden">
+                <input class="title" type="text" onkeyup="toLimit(this) " placeholder="title">
+                <input class="quizzImgURL" type="text" placeholder="url">
+                <input class="qtdPerguntas" type="number" placeholder="qtdPerguntas">
+                <input class="qtdNivel" type="number" placeholder="qtdNivel">
+                <button onclick="enviarInfBasicas()">Prosseguir pra criar perguntas</button>
+            </div>
+            <div class="containerPerguntas">
+                <div class="listaPerguntas">
+                    <div class="pergunta1">
+                        <h1>Pergunta 1</h1>
+                        <input class="textoPergunta nao-preenchida" type="text" placeholder="Texto da pergunta">
+                        <input class="corPergunta nao-preenchida" type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" placeholder="Cor de fundo da pergunta">
+                        <h1>Resposta Correta</h1>
+                        <input class="respostaCorreta nao-preenchida" type="text" placeholder="Resposta Correta">
+                        <input class="imagemCorreta nao-preenchida" type="text" placeholder="URL da imagem">
+                        <h1>Respostas Incorretas</h1>
+                        <input class="respostaIncorreta nao-preenchida" type="text" placeholder="Resposta incorreta 1">
+                        <input class="imagemErrada nao-preenchida" type="text" placeholder="URL da imagem 1">
+                        <input class="respostaIncorreta nao-preenchida" type="text" placeholder="Resposta incorreta 2">
+                        <input class="imagemErrada nao-preenchida" type="text" placeholder="URL da imagem 2">
+                        <input class="respostaIncorreta nao-preenchida" type="text" placeholder="Resposta incorreta 3">
+                        <input class="imagemErrada nao-preenchida" type="text" placeholder="URL da imagem 3">
+                        <button onclick="testar()">Teste</button>
+                    </div>
+                    <div class="pergunta2">
+                        <h1>Pergunta 2</h1>
+                        <input class="textoPergunta" type="text" placeholder="Texto da pergunta">
+                        <input class="corPergunta" type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" placeholder="Cor de fundo da pergunta">
+                        <h1>Resposta Correta</h1>
+                        <input class="respostaCorreta" type="text" placeholder="Resposta Correta">
+                        <input class="imagemCorreta" type="text" placeholder="URL da imagem">
+                        <h1>Respostas Incorretas</h1>
+                        <input class="respostaIncorreta" type="text" placeholder="Resposta incorreta 1">
+                        <input class="imagemErrada" type="text" placeholder="URL da imagem 1">
+                        <input class="respostaIncorreta" type="text" placeholder="Resposta incorreta 2">
+                        <input class="imagemErrada" type="text" placeholder="URL da imagem 2">
+                        <input class="respostaIncorreta" type="text" placeholder="Resposta incorreta 3">
+                        <input class="imagemErrada" type="text" placeholder="URL da imagem 3">
+                    </div>
+                    
+                </div>
+            </div>
+        </aside>
     </main> 
     <footer>
     </footer>
