@@ -1,15 +1,14 @@
 /* DESKTOP */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    box-sizing: border-box;
+}
 body{
     font-family: 'Roboto', sans-serif;
     background-color: #E5E5E5;
 }
-button:hover{
-    filter:brightness(95%);
-    animation: bounce .5s;
-}
-ul::-webkit-scrollbar{
-    display: none;
-}
+
 h1{
     font-size: 20px;
     color: #000000;
@@ -120,9 +119,7 @@ ul{
     height: 227px;
 }
 
-.hidden{
-    display: none !important;
-}
+
 
 .perguntas{
     margin: 42px auto 0 auto;
@@ -195,6 +192,10 @@ ul{
 .resultado img{
     width: 364px;
     height: 273px;
+}
+
+.hidden{
+    display: none !important;
 }
 
 .comentario{
