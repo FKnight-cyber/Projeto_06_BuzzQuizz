@@ -3,6 +3,10 @@ body{
     font-family: 'Roboto', sans-serif;
     background-color: #E5E5E5;
 }
+button:hover{
+    filter:brightness(95%);
+    animation: bounce .5s;
+}
 ul::-webkit-scrollbar{
     display: none;
 }
