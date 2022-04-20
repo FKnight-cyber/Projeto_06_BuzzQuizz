@@ -100,7 +100,8 @@ function toLimit(string = ""){
 }
 
 function criarQuizz(){
-    document.querySelector(".maincontent").classList.add("hidden");
+    document.querySelector(".screen1_listquizz").classList.add("hidden");
+    document.querySelector(".screen3_pagequizz").classList.remove("hidden");
 }
 
 function isImage(url) {
@@ -108,19 +109,31 @@ function isImage(url) {
   }
 
 function enviarInfBasicas(){
+	document.querySelector(".pagequizz_1").classList.add("hidden")
+	document.querySelector(".pagequizz_2").classList.remove("hidden")
+
     const title = document.querySelector(".title").value
     const qtdPerguntas = document.querySelector(".qtdPerguntas").value
     const qtdNiveis = document.querySelector(".qtdNivel").value
     const image = document.querySelector(".quizzImgURL").value
 
-    if(isImage(image)){
-        if(title.length < 20 || qtdPerguntas < 3 || qtdNiveis < 2){
-            alert("Preencha os dados corretamente");
-        }
+    if(title.length < 20 || qtdPerguntas < 3 || qtdNiveis < 2 || !isImage(image)){
+        alert("Preencha os dados corretamente");
     }
-
+    
     myQuizz.title = title;
     myQuizz.image = image;
+
+	const listaPerguntas = document.querySelector(".inputs_2");
+
+	for(let i = 1;i < qtdPerguntas;i++){
+		listaPerguntas.innerHTML += `
+		<article class="newinputs">
+                <h4>Pergunta ${i+1}</h4>
+                <ion-icon name="brush-outline"></ion-icon>
+            </article>
+	`
+	}
     criarPerguntas();
 }
 
