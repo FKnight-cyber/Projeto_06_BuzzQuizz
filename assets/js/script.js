@@ -181,6 +181,7 @@ function criarPerguntas(){
 }
 
 function criarNiveis(){
+	let arr = [];
 	let conditionsNotMet = false;
 	let hasZero = false;
 	const tituloNivel = document.querySelectorAll(".tituloNivel");
@@ -189,23 +190,30 @@ function criarNiveis(){
 	const textoNivel = document.querySelectorAll(".textoNivel");
 
 	for(let i = 0; i < totalDeNiveis; i++){
-		if(tituloNivel[i].value.length < 10 || (acertoPercentual[i].value < 0 || acertoPercentual[i].value > 100)
-			|| !isImage(imageNivel[i].value) || textoNivel[i].value.length < 30){
+		if(tituloNivel[i].value.length < 10 || acertoPercentual[i].value < 0 ||
+			acertoPercentual[i].value > 100 || !isImage(imageNivel[i].value) ||
+			textoNivel[i].value.length < 30){
         		conditionsNotMet = true;
-    	}else if(acertoPercentual[i].value === 0){
+    	}
+		if(acertoPercentual[i].value == 0){
 			hasZero = true;
 		}
 	}
 
 	if(conditionsNotMet || !hasZero){
+		console.log(hasZero)
 		alert("Preencha os dados corretamente");
 	}else{
 		for(let k = 0; k < totalDeNiveis;k++){
-			myQuizz.levels[k].title = tituloNivel[k].value;
-			myQuizz.levels[k].image = imageNivel[k].value;
-			myQuizz.levels[k].text = textoNivel[k].value;
-			myQuizz.levels[k].minValue = acertoPercentual[k].value;
+			arr.push({
+				title:tituloNivel[k].value,
+				image:imageNivel[k].value,
+				text:textoNivel[k].value,
+				minValue:acertoPercentual[k].value
+			});
 		}
+
+		myQuizz['levels'] = arr;
 
 		document.querySelector(".imagem_final").innerHTML = `
 			<div>
