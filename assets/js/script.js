@@ -1,6 +1,7 @@
 const API = "https://mock-api.driven.com.br/api/v6/buzzquizz";
 
 let totalDePerguntas = 0;
+let totalDeNiveis = 0;
 let quizzes = []
 let myQuizz = {
 	id: 1,
@@ -102,7 +103,6 @@ function toLimit(string = ""){
 }
 
 function criarQuizz(){
-	console.log("1")
     document.querySelector(".screen1_listquizz").classList.add("hidden");
     document.querySelector(".screen3_pagequizz").classList.remove("hidden");
 }
@@ -122,6 +122,7 @@ function enviarInfBasicas(){
         alert("Preencha os dados corretamente");
     }else{
 		totalDePerguntas = qtdPerguntas;
+		totalDeNiveis = qtdNiveis
 		document.querySelector(".pagequizz_1").classList.toggle("hidden");
 		document.querySelector(".pagequizz_2").classList.toggle("hidden");
 
@@ -228,6 +229,10 @@ function criarPerguntas(){
 		document.querySelector(".pagequizz_2").classList.toggle("hidden");
 		document.querySelector(".pagequizz_3").classList.toggle("hidden");
 	}		
+}
+
+function criarNiveis(){
+
 }
 
 function select(elemento){

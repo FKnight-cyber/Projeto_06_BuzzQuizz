@@ -137,6 +137,10 @@ nav{
     font-weight: 400;
     font-size: 21px;
     line-height: 25px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
 }
 .myquizz{
     word-wrap: break-word;
@@ -207,6 +211,7 @@ nav{
     align-items: center;
     color: #FFFFFF;
 }
+
 .hidden{
     display: none !important;
 }
