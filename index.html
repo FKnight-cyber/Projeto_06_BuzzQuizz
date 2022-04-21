@@ -22,7 +22,7 @@
         <h1 class="logo_text">BuzzQuizz</h1>
     </header>
     <main>
-        <nav class="screen1_listquizz ">
+        <nav class="screen1_listquizz hidden">
             <section class="mylistquizz_none">
                 <p>Você não criou nenhum<br>quizz ainda :(</p>
                 <button onclick="criarQuizz()">Criar Quiz</button>
@@ -137,8 +137,9 @@
                     <img src="assets/images/pacman.jpeg" alt="Pacman">
                     <figcaption>Rato</figcaption>
             </article>
-        <aside class="screen3_pagequizz hidden">
-        <section class="pagequizz_1 hidden">
+        </nav>
+        <aside class="screen3_pagequizz">
+        <section class="pagequizz_1">
             <h5></h5>
             <article class="inputs_1">
                 <input class="title" type="text" name="" id="" placeholder="Título do seu Quizz" onkeyup="toLimit(this) ">
