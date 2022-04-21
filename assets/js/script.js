@@ -102,6 +102,7 @@ function toLimit(string = ""){
 }
 
 function criarQuizz(){
+	console.log("1")
     document.querySelector(".screen1_listquizz").classList.add("hidden");
     document.querySelector(".screen3_pagequizz").classList.remove("hidden");
 }
