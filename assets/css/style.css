@@ -34,6 +34,10 @@ header > h1{
     line-height: 43px;
     color: #ffffff;
 }
+h5{
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
 .screen1_listquizz{
     margin-left: 10%;
     margin-right: 10%;
@@ -57,7 +61,7 @@ header > h1{
 .screen3_pagequizz{
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: 100px;
+    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -220,6 +224,84 @@ header > h1{
     color: #FFFFFF;
 }
 
+.inputs_1{
+    border-radius: 12px;
+    width: 100%;
+    height: 0 auto;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+.inputs_2{
+    background-color: red;
+    border-radius: 12px;
+}
+.testando{
+    background: rgb(210,0,0);
+    background: -moz-linear-gradient(22deg, rgba(210,0,0,0) 0%, rgba(98,10,6,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(210,0,0,0) 0%, rgba(98,10,6,1) 100%);
+    background: linear-gradient(77deg, rgba(210,0,0,0) 0%, rgba(98,10,6,1) 99%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d20000",endColorstr="#620a06",GradientType=1);
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+}
+div:last-child{
+    margin-bottom: 10px;
+}
+div{
+    display: inline;
+    justify-content: center;
+    text-align: center;
+    display: inherit;
+}
+.testando2{
+    
+}
+button::placeholder{
+    align-items: center;
+    justify-content: center;
+}
+.iconInputs{
+
+}
+input{
+    border: 1px solid rgba(209, 209, 209, 1);
+    border-radius: 6px;
+    height: 40px;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 3%;
+    margin-bottom: 2%;
+    width: 96%;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 19px;
+    line-height: 22px;
+    color: #BABABA;
+}
+.pagequizz_1{
+    display: inline;
+    justify-content: center;
+    text-align: center;
+
+}
+.inputform{
+    width: 300px;
+    padding: 20px;
+    font-style: normal;
+    font-weight: 500;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFF5F4;
+    margin-top: 40px;
+    background-color: #EC362D;
+    border-radius: 15px;
+    text-align: end;
+}
 .hidden{
     display: none !important;
 }

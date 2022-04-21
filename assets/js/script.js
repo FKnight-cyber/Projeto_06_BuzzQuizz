@@ -73,7 +73,7 @@ function enviarInfBasicas(){
                 <div class="content">
                 <div class="testando">
                     <h4>Pergunta ${i+1}</h4>
-                    <ion-icon onclick="select(this)" name="brush-outline"></ion-icon>
+                    <ion-icon class="iconInputs" onclick="select(this)" name="brush-outline"></ion-icon>
                 </div>
                 <div class="testando2">
                     <h4>Pergunta ${i+1}</h4>
