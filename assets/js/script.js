@@ -3,77 +3,7 @@ const API = "https://mock-api.driven.com.br/api/v6/buzzquizz";
 let totalDePerguntas = 0;
 let totalDeNiveis = 0;
 let quizzes = [];
-let myQuizz = {
-	id: 1,
-	title: "Título do quizz",
-	image: "https://http.cat/411.jpg",
-	questions: [
-		{
-			title: "Título da pergunta 1",
-			color: "#123456",
-			answers: [
-				{
-					text: "Texto da resposta 1",
-					image: "https://http.cat/411.jpg",
-					isCorrectAnswer: true
-				},
-				{
-					text: "Texto da resposta 2",
-					image: "https://http.cat/412.jpg",
-					isCorrectAnswer: false
-				}
-			]
-		},
-		{
-			title: "Título da pergunta 2",
-			color: "#123456",
-			answers: [
-				{
-					text: "Texto da resposta 1",
-					image: "https://http.cat/411.jpg",
-					isCorrectAnswer: true
-				},
-				{
-					text: "Texto da resposta 2",
-					image: "https://http.cat/412.jpg",
-					isCorrectAnswer: false
-				}
-			]
-		},
-		{
-			title: "Título da pergunta 3",
-			color: "#123456",
-			answers: [
-				{
-					text: "Texto da resposta 1",
-					image: "https://http.cat/411.jpg",
-					isCorrectAnswer: true
-				},
-				{
-					text: "Texto da resposta 2",
-					image: "https://http.cat/412.jpg",
-					isCorrectAnswer: false
-				}
-			]
-		}
-	],
-	levels: [
-		{
-			title: "Título do nível 1",
-			image: "https://http.cat/411.jpg",
-			text: "Descrição do nível 1",
-			minValue: 0
-		},
-		{
-			title: "Título do nível 2",
-			image: "https://http.cat/412.jpg",
-			text: "Descrição do nível 2",
-			minValue: 50
-		}
-	]
-}
-
-console.log(myQuizz)
+let myQuizz = {};
 	
 function obterQuizzes(){
     axios.get(`${API}/quizzes`).then(armazenarQuizzes);
@@ -132,6 +62,8 @@ function enviarInfBasicas(){
 		myQuizz.title = title;
 		myQuizz.image = image;
 
+		console.log(myQuizz)
+
 		const listaPerguntas = document.querySelector(".inputs_2");
 		const listaNiveis = document.querySelector(".inputs_3");
 
@@ -188,6 +120,7 @@ function enviarInfBasicas(){
 }
 
 function criarPerguntas(){
+	let arr = [];
 	let conditionsNotMet = false;
     const textoPergunta = document.querySelectorAll(".textoPergunta");
     const respostaCorreta = document.querySelectorAll(".respostaCorreta");
@@ -212,32 +145,36 @@ function criarPerguntas(){
 		alert("Preencha os dados corretamente");
 	}else{
 		for(let i = 0; i < totalDePerguntas;i++){
-			console.log(textoPergunta[i].value)	
-			myQuizz.questions[i].title = textoPergunta[i].value;
-			myQuizz.questions[i].color = corPergunta[i].value;
-			myQuizz.questions[i].answers = [
-				{
-					text: respostaCorreta[i].value,
-					image: imageC[i].value,
-					isCorrectAnswer: true
-				},
-				{
-					text: respostaIncorreta1[i].value,
-					image: imageE1[i].value,
-					isCorrectAnswer: false
-				},
-				{
-					text: respostaIncorreta2[i].value,
-					image: imageE2[i].value,
-					isCorrectAnswer: false
-				},
-				{
-					text: respostaIncorreta3[i].value,
-					image: imageE3[i].value,
-					isCorrectAnswer: false
-				},
-			];
+			arr.push({
+				title: textoPergunta[i].value,
+				color: corPergunta[i].value,
+				answers: [
+					{
+						text: respostaCorreta[i].value,
+						image: imageC[i].value,
+						isCorrectAnswer: true
+					},
+					{
+						text: respostaIncorreta1[i].value,
+						image: imageE1[i].value,
+						isCorrectAnswer: false
+					},
+					{
+						text: respostaIncorreta2[i].value,
+						image: imageE2[i].value,
+						isCorrectAnswer: false
+					},
+					{
+						text: respostaIncorreta3[i].value,
+						image: imageE3[i].value,
+						isCorrectAnswer: false
+					},
+					]
+					}		
+			);
+				
 		}
+		myQuizz['questions'] = arr;
 		document.querySelector(".pagequizz_2").classList.toggle("hidden");
 		document.querySelector(".pagequizz_3").classList.toggle("hidden");
 	}		
