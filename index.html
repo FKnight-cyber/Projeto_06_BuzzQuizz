@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <header>
+    <header class="">
         <h1 class="logo_text">BuzzQuizz</h1>
     </header>
     <main>
@@ -27,7 +27,7 @@
                 <p>Você não criou nenhum<br>quizz ainda :(</p>
                 <button onclick="criarQuizz()">Criar Quiz</button>
             </section>
-            <section class="mylistquizz">
+            <section class="mylistquizz hidden">
                 <div class="mylistquizz_title">
                     <h2>Seus Quizzes</h2>
                     <ion-icon name="add-circle"></ion-icon>
@@ -151,85 +151,12 @@
         <section class="pagequizz_2 hidden">
             <h5 class="title_input"></h5>
             <article class="inputs_2">
-                <article class="newinputs">
-                    <div class="content">
-                    <div class="testando">
-                        <h4>Pergunta 1</h4>
-                        <ion-icon onclick="select(this)" name="brush-outline"></ion-icon>
-                    </div>
-                    <div class="testando2">
-                        <h4>Pergunta 1</h4>
-                        <input class="textoPergunta " type="text" placeholder="Texto da pergunta">
-                        <input class="corPergunta " type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" placeholder="Cor de fundo da pergunta">
-                        <h4>Resposta Correta</h4>
-                        <input class="respostaCorreta " type="text" placeholder="Resposta Correta">
-                        <input class="imagemCorreta " type="text" placeholder="URL da imagem">
-                        <h4>Respostas incorretas</h4>
-                        <input class="respostaIncorreta1 " type="text" placeholder="Resposta incorreta 1">
-                        <input class="imagemErrada1 " type="text" placeholder="URL da imagem 1">
                 
-                        <input class="respostaIncorreta2 " type="text" placeholder="Resposta incorreta 2">
-                        <input class="imagemErrada2 " type="text" placeholder="URL da imagem 2">
-                                
-                        <input class="respostaIncorreta3 " type="text" placeholder="Resposta incorreta 3">
-                        <input class="imagemErrada3 " type="text" placeholder="URL da imagem 3">
-                    </div>
-                    </div>  
-                </article>
-                <article class="newinputs">
-                    <div class="content">
-                    <div class="testando">
-                        <h4>Pergunta 2</h4>
-                        <ion-icon onclick="select(this)" name="brush-outline"></ion-icon>
-                    </div>
-                    <div class="testando2">
-                        <h4>Pergunta 2</h4>
-                        <input class="textoPergunta " type="text" placeholder="Texto da pergunta">
-                        <input class="corPergunta " type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" placeholder="Cor de fundo da pergunta">
-                        <h4>Resposta Correta</h4>
-                        <input class="respostaCorreta " type="text" placeholder="Resposta Correta">
-                        <input class="imagemCorreta " type="text" placeholder="URL da imagem">
-                        <h4>Respostas incorretas</h4>
-                        <input class="respostaIncorreta1 " type="text" placeholder="Resposta incorreta 1">
-                        <input class="imagemErrada1 " type="text" placeholder="URL da imagem 1">
-                
-                        <input class="respostaIncorreta2 " type="text" placeholder="Resposta incorreta 2">
-                        <input class="imagemErrada2 " type="text" placeholder="URL da imagem 2">
-                                
-                        <input class="respostaIncorreta3 " type="text" placeholder="Resposta incorreta 3">
-                        <input class="imagemErrada3 " type="text" placeholder="URL da imagem 3">
-                    </div>
-                    </div>  
-                </article> 
-                <article class="newinputs">
-                    <div class="content">
-                    <div class="testando">
-                        <h4>Pergunta 3</h4>
-                        <ion-icon onclick="select(this)" name="brush-outline"></ion-icon>
-                    </div>
-                    <div class="testando2">
-                        <h4>Pergunta 2</h4>
-                        <input class="textoPergunta " type="text" placeholder="Texto da pergunta">
-                        <input class="corPergunta " type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" placeholder="Cor de fundo da pergunta">
-                        <h4>Resposta Correta</h4>
-                        <input class="respostaCorreta " type="text" placeholder="Resposta Correta">
-                        <input class="imagemCorreta " type="text" placeholder="URL da imagem">
-                        <h4>Respostas incorretas</h4>
-                        <input class="respostaIncorreta1 " type="text" placeholder="Resposta incorreta 1">
-                        <input class="imagemErrada1 " type="text" placeholder="URL da imagem 1">
-                
-                        <input class="respostaIncorreta2 " type="text" placeholder="Resposta incorreta 2">
-                        <input class="imagemErrada2 " type="text" placeholder="URL da imagem 2">
-                                
-                        <input class="respostaIncorreta3 " type="text" placeholder="Resposta incorreta 3">
-                        <input class="imagemErrada3 " type="text" placeholder="URL da imagem 3">
-                    </div>
-                    </div>  
                 </article>    
             </article>
             <button onclick="criarPerguntas()" class="inputform">Prosseguir pra criar níveis</button>
         </section>
-        <section class="pagequizz_3">
+        <section class="pagequizz_3 hidden">
             <h5 class="title_input">Agora, decida os níveis</h5>
             <article class="inputs_3">
                 <h4>Nível 1</h4>
