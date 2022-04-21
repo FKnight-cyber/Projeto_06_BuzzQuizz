@@ -2,7 +2,7 @@ const API = "https://mock-api.driven.com.br/api/v6/buzzquizz";
 
 let totalDePerguntas = 0;
 let totalDeNiveis = 0;
-let quizzes = []
+let quizzes = [];
 let myQuizz = {
 	id: 1,
 	title: "Título do quizz",
@@ -73,6 +73,8 @@ let myQuizz = {
 	]
 }
 
+console.log(myQuizz)
+	
 function obterQuizzes(){
     axios.get(`${API}/quizzes`).then(armazenarQuizzes);
 }
@@ -103,8 +105,9 @@ function toLimit(string = ""){
 }
 
 function criarQuizz(){
-    document.querySelector(".screen1_listquizz").classList.add("hidden");
-    document.querySelector(".screen3_pagequizz").classList.remove("hidden");
+    document.querySelector(".screen1_listquizz").classList.toggle("hidden");
+    document.querySelector(".screen3_pagequizz").classList.toggle("hidden");
+	document.querySelector(".pagequizz_1").classList.toggle("hidden");
 }
 
 function isImage(url) {
@@ -127,7 +130,7 @@ function enviarInfBasicas(){
 		document.querySelector(".pagequizz_2").classList.toggle("hidden");
 
 		myQuizz.title = title;
-    	myQuizz.image = image;
+		myQuizz.image = image;
 
 		const listaPerguntas = document.querySelector(".inputs_2");
 		const listaNiveis = document.querySelector(".inputs_3");
@@ -197,7 +200,6 @@ function criarPerguntas(){
 	const respostaIncorreta3 = document.querySelectorAll(".respostaIncorreta3");
 	const imageE3 = document.querySelectorAll(".imagemErrada3");
 
-	
 	for(let k = 0; k < totalDePerguntas; k++){
 		if(textoPergunta[k].value.length < 20 || !isImage(imageC[k].value) || 
 			respostaCorreta[k].value === '' || (respostaIncorreta1[k].value === '' &&
@@ -210,6 +212,7 @@ function criarPerguntas(){
 		alert("Preencha os dados corretamente");
 	}else{
 		for(let i = 0; i < totalDePerguntas;i++){
+			console.log(textoPergunta[i].value)	
 			myQuizz.questions[i].title = textoPergunta[i].value;
 			myQuizz.questions[i].color = corPergunta[i].value;
 			myQuizz.questions[i].answers = [
