@@ -25,7 +25,7 @@
     <nav class="screen1_listquizz hidden">
         <section class="mylistquizz_none">
             <p></p>
-            <button onclick="criarQuizz()">Criar Quiz</button>
+            <button onclick="criarQuizz()">Criar Quizz</button>
         </section>
         <section class="mylistquizz">
             <article class="mylistquizz_title">
@@ -98,7 +98,7 @@
         </section>
     </section>
     <aside class="screen3_pagequizz">
-        <section class="pagequizz_1">
+        <section class="pagequizz_1 hidden">
             <h5></h5>
             <article class="inputs_1">
                 <input class="title" type="text" name="" id="" placeholder="Título do seu Quizz" onkeyup="toLimit(this) ">
@@ -108,34 +108,86 @@
             </article>
             <button onclick="enviarInfBasicas()" class="inputform">Prosseguir pra criar perguntas</button>
         </section>
-        <section class="pagequizz_2 hidden">
+        <section class="pagequizz_2">
             <h5 class="title_input"></h5>
             <article class="inputs_2">
-                <h4>Pergunta 1</h4>
-                <input class="textoPergunta nao-preenchida" type="text" placeholder="Texto da pergunta">
-                <input class="corPergunta nao-preenchida" type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" placeholder="Cor de fundo da pergunta">
-                <h4>Resposta Correta</h4>
-                <input class="respostaCorreta nao-preenchida" type="text" placeholder="Resposta Correta">
-                <input class="imagemCorreta nao-preenchida" type="text" placeholder="URL da imagem">
-                <h4>Respostas incorretas</h4>
-                <input class="respostaIncorreta1 nao-preenchida" type="text" placeholder="Resposta incorreta 1">
-                <input class="imagemErrada1 nao-preenchida" type="text" placeholder="URL da imagem 1">
-
-                <input class="respostaIncorreta2 nao-preenchida" type="text" placeholder="Resposta incorreta 2">
-                <input class="imagemErrada2 nao-preenchida" type="text" placeholder="URL da imagem 2">
+                <article class="newinputs">
+                    <div class="content">
+                    <div class="testando">
+                        <h4>Pergunta 1</h4>
+                        <ion-icon onclick="select(this)" name="brush-outline"></ion-icon>
+                    </div>
+                    <div class="testando2">
+                        <h4>Pergunta 1</h4>
+                        <input class="textoPergunta " type="text" placeholder="Texto da pergunta">
+                        <input class="corPergunta " type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" placeholder="Cor de fundo da pergunta">
+                        <h4>Resposta Correta</h4>
+                        <input class="respostaCorreta " type="text" placeholder="Resposta Correta">
+                        <input class="imagemCorreta " type="text" placeholder="URL da imagem">
+                        <h4>Respostas incorretas</h4>
+                        <input class="respostaIncorreta1 " type="text" placeholder="Resposta incorreta 1">
+                        <input class="imagemErrada1 " type="text" placeholder="URL da imagem 1">
                 
-                <input class="respostaIncorreta3 nao-preenchida" type="text" placeholder="Resposta incorreta 3">
-                <input class="imagemErrada3 nao-preenchida" type="text" placeholder="URL da imagem 3">
+                        <input class="respostaIncorreta2 " type="text" placeholder="Resposta incorreta 2">
+                        <input class="imagemErrada2 " type="text" placeholder="URL da imagem 2">
+                                
+                        <input class="respostaIncorreta3 " type="text" placeholder="Resposta incorreta 3">
+                        <input class="imagemErrada3 " type="text" placeholder="URL da imagem 3">
+                    </div>
+                    </div>  
+                </article>
+                <article class="newinputs">
+                    <div class="content">
+                    <div class="testando">
+                        <h4>Pergunta 2</h4>
+                        <ion-icon onclick="select(this)" name="brush-outline"></ion-icon>
+                    </div>
+                    <div class="testando2">
+                        <h4>Pergunta 2</h4>
+                        <input class="textoPergunta " type="text" placeholder="Texto da pergunta">
+                        <input class="corPergunta " type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" placeholder="Cor de fundo da pergunta">
+                        <h4>Resposta Correta</h4>
+                        <input class="respostaCorreta " type="text" placeholder="Resposta Correta">
+                        <input class="imagemCorreta " type="text" placeholder="URL da imagem">
+                        <h4>Respostas incorretas</h4>
+                        <input class="respostaIncorreta1 " type="text" placeholder="Resposta incorreta 1">
+                        <input class="imagemErrada1 " type="text" placeholder="URL da imagem 1">
+                
+                        <input class="respostaIncorreta2 " type="text" placeholder="Resposta incorreta 2">
+                        <input class="imagemErrada2 " type="text" placeholder="URL da imagem 2">
+                                
+                        <input class="respostaIncorreta3 " type="text" placeholder="Resposta incorreta 3">
+                        <input class="imagemErrada3 " type="text" placeholder="URL da imagem 3">
+                    </div>
+                    </div>  
+                </article> 
+                <article class="newinputs">
+                    <div class="content">
+                    <div class="testando">
+                        <h4>Pergunta 3</h4>
+                        <ion-icon onclick="select(this)" name="brush-outline"></ion-icon>
+                    </div>
+                    <div class="testando2">
+                        <h4>Pergunta 2</h4>
+                        <input class="textoPergunta " type="text" placeholder="Texto da pergunta">
+                        <input class="corPergunta " type="text" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" placeholder="Cor de fundo da pergunta">
+                        <h4>Resposta Correta</h4>
+                        <input class="respostaCorreta " type="text" placeholder="Resposta Correta">
+                        <input class="imagemCorreta " type="text" placeholder="URL da imagem">
+                        <h4>Respostas incorretas</h4>
+                        <input class="respostaIncorreta1 " type="text" placeholder="Resposta incorreta 1">
+                        <input class="imagemErrada1 " type="text" placeholder="URL da imagem 1">
+                
+                        <input class="respostaIncorreta2 " type="text" placeholder="Resposta incorreta 2">
+                        <input class="imagemErrada2 " type="text" placeholder="URL da imagem 2">
+                                
+                        <input class="respostaIncorreta3 " type="text" placeholder="Resposta incorreta 3">
+                        <input class="imagemErrada3 " type="text" placeholder="URL da imagem 3">
+                    </div>
+                    </div>  
+                </article>    
             </article>
-            <article class="newinputs">
-                <h4>Pergunta 2</h4>
-                <ion-icon name="brush-outline"></ion-icon>
-            </article>
-            <article class="newinputs">
-                <h4></h4>
-                <icon></icon>
-            </article>
-            <button class="inputform"></button>
+            <button onclick="criarPerguntas()" class="inputform">Prosseguir pra criar níveis</button>
         </section>
         <section class="pagequizz_3 hidden">
             <h5 class="title_input"></h5>

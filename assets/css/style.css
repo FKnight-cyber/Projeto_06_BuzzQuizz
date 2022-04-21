@@ -249,3 +249,15 @@ ul{
     display: flex;
     flex-direction: column;
 }
+
+.content.selecionado .testando{
+    display: none !important;
+}
+
+.content.selecionado .testando2{
+    display: table !important;
+}
+
+.content .testando2{
+    display: none !important;
+}
