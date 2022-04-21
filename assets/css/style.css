@@ -27,7 +27,17 @@ header{
     justify-content: center;
     align-items: center;
 }
+header > h1{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 43px;
+    color: #ffffff;
+}
 .screen1_listquizz{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 100px;
     width: 80%;
     z-index: 2;
     position: relative;
@@ -37,31 +47,30 @@ header{
     justify-content: center;
 }
 .screen2_pagequizz{
-    margin-top: 100px;
-}
-.screen3_pagequizz{
-    width: 80%;
-    margin-top: 100px;
-    z-index: 1;
-    position: relative;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 40px;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
-h1{
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 37px;
-    line-height: 43px;
-    color: #ffffff;
-}
-nav{
-    width: 80%;
+.screen3_pagequizz{
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.title_input{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
 }
 .mylistquizz_none{
     border: 2px dashed rgba(212, 212, 212, 1);
@@ -71,8 +80,6 @@ nav{
     position: relative;
 }
 .mylistquizz{
-    align-items: flex-end;
-    border-radius: 12px;
     width: 100%;
     height: 272px;
     display: flex;
@@ -80,6 +87,8 @@ nav{
     flex-direction: row;
     flex-wrap: nowrap;
     align-content: center;
+    align-items: flex-end;
+    border-radius: 12px;
 }
 .mylistquizz_title{
     margin-left: 10px;
@@ -98,7 +107,6 @@ nav{
     line-height: 23px;
     color: #000000;
     margin-top: 10px;
-
 }
 .mylistquizz_title > ion-icon{
     margin-left: 20px;
@@ -143,23 +151,21 @@ nav{
     display: flex;
     align-items: center;
     text-align: center;
-
 }
 .myquizz{
-    word-wrap: break-word;
-    position: absolute;
-    margin-top: -70px;
-    width: 220px;
+    position: relative;
+    margin-top: 50px;
+    margin-left: 15px;
+    width: 280px;
     height: 190px;
-    margin-right: 60px;
-    flex-wrap: wrap;
+    display: flex;
 }
 .myquizz > img {
     object-fit: cover;
     background: linear-gradient(180deg, rgba(255, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%);
     border-radius: 5px;
-    width: 240px;
-    height: 181px;
+    width: 280px;
+    height: 190px;
 }
 .myquizz > figcaption {
     position: absolute;
@@ -172,22 +178,6 @@ nav{
     display: flex;
     align-items: center;
     color: #FFFFFF;
-}
-.listquizz_user{
-    margin-left: 10px;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 200px;
-    position: relative;
-    left: 0px;
-    top: 0px;
-    border-radius: 12px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
 }
 .listquizz{
     margin-left: -10px;
@@ -215,7 +205,7 @@ nav{
     background: linear-gradient(180deg, rgba(255, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%);
     border-radius: 5px;
     width: 280px;
-    height: 181px;
+    height: 190px;
 }
 .tumb_quizz > figcaption{
     position: absolute;
