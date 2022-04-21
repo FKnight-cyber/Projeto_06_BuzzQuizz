@@ -37,11 +37,17 @@ header{
     justify-content: center;
 }
 .screen2_pagequizz{
-    z-index: 1;
-    position: relative;
+    margin-top: 100px;
 }
 .screen3_pagequizz{
+    width: 80%;
+    margin-top: 100px;
+    z-index: 1;
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 h1{
     font-family: 'Roboto';
@@ -65,12 +71,15 @@ nav{
     position: relative;
 }
 .mylistquizz{
-    align-items: center;
+    align-items: flex-end;
     border-radius: 12px;
     width: 100%;
     height: 272px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
 }
 .mylistquizz_title{
     margin-left: 10px;
