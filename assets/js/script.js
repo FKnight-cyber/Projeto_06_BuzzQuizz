@@ -53,7 +53,7 @@ function renderizarQuizzes(){
     for(let i = 0;i < quizzes.length;i++){
         ulQuizz.innerHTML += `
         <figure onclick="accessQuizz(this)" class="tumb_quizz">
-			<icon class="getID hidden">${quizzes[i].id}</icon>
+			<icon class="getID">${quizzes[i].id}</icon>
         	<img src="${quizzes[i].image}" alt="">
         	<figcaption>${quizzes[i].title}</figcaption>
     	</figure>
@@ -217,7 +217,6 @@ function criarPerguntas(){
 				
 		}
 		myQuizz['questions'] = arr;
-		// myQuizz.questions.color
 		document.querySelector(".pagequizz_2").classList.toggle("hidden");
 		document.querySelector(".pagequizz_3").classList.toggle("hidden");
 	}		
@@ -273,18 +272,18 @@ function criarNiveis(){
 }
 
 function enviarQuizz(){
-	axios.post(`${API}/quizzes`,myQuizz).then(armazenarMeuQuizz);
-	axios.post(`${API}/quizzes`,myQuizz).catch(deuErro);
+	const promise = axios.post(`${API}/quizzes`,myQuizz);
+	promise.then(armazenarMeuQuizz)
+	promise.catch(deuErro);
 }
 
 function deuErro(){
 	alert("eita");
 }
 
-function armazenarMeuQuizz(){
-	const temp = localStorage.setItem("id",response.data.id);
+function armazenarMeuQuizz(response){
 	
-	meusQuizzesID.push(Number(temp));
+	meusQuizzesID.push(Number(response.data.id));
 	const myQuizzesIDSerializado = JSON.stringify(meusQuizzesID);
 	localStorage.setItem("id", myQuizzesIDSerializado);
 }
@@ -314,20 +313,19 @@ function renderizarQuizzAtual(){
 		<article class="top_quizz">
 			<figure class="head">
 				<img class="imagetop_quizz" src="${quizzAtual.image}" alt="">
-				<figcaption class="titleImgTop">${quizzAtual.title}</figcaption>
+				<figcaption class>${quizzAtual.title}</figcaption>
 			</figure>
 		</article>
 		<section class="boby_quest">
-<div>
-
-</div>
+                    
+                   
         </section>
         <section class="boby_questresult">
             <section class="nivelResult">
 
             </section>
                    
-            <button onclick="quizzRefreshing()" class="reloadquizz_button">Reiniciar Quizz</button>
+            <button class="reloadquizz_button">Reiniciar Quizz</button>
             <button onclick="returnHomeTodos()" class="homeback_button">Voltar pra Home</button>
         </section>
 	`
@@ -398,15 +396,17 @@ function returnHomeTodos(){
 	document.querySelector(".screen2_pagequizz").classList.toggle("hidden");
 	document.querySelector(".screen1_listquizz").classList.toggle("hidden");
 }
-function quizzRefreshing(){
-	window.scrollTo(0, document.body.scrollTop);
-}
 
 function returnHome(){
 	document.querySelector(".pagequizz_4").classList.toggle("hidden");
 	document.querySelector(".screen3_pagequizz").classList.toggle("hidden");
 	document.querySelector(".screen1_listquizz").classList.toggle("hidden");
 }
+
+function quizzRefreshing(){
+	window.scrollTo(0, document.body.scrollTop);
+}
+
 function reloadWindown(){
 	window.location.reload();
 }
