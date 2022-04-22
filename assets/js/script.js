@@ -306,9 +306,10 @@ function armazenarQuizzAtual(response){
 function renderizarQuizzAtual(){
 	document.querySelector(".screen1_listquizz").classList.toggle("hidden");
 	document.querySelector(".screen2_pagequizz").classList.toggle("hidden");
-
-	let Quizz = document.querySelector(".screen2_pagequizz");
 	
+	let Quizz = document.querySelector(".screen2_pagequizz");
+	Quizz.innerHTML = '';
+
 	Quizz.innerHTML = `
 		<article class="top_quizz">
 			<figure class="head">
@@ -317,63 +318,90 @@ function renderizarQuizzAtual(){
 			</figure>
 		</article>
 		<section class="boby_quest">
-                    
-                   
+              
         </section>
         <section class="boby_questresult">
-            <section class="nivelResult">
-
-            </section>
+    
                    
             <button class="reloadquizz_button">Reiniciar Quizz</button>
             <button onclick="returnHomeTodos()" class="homeback_button">Voltar pra Home</button>
         </section>
 	`
 	const Quizz2 = document.querySelector(".boby_quest");
-	const Quizz3 = document.querySelector(".nivelResult");
+	const Quizz3 = document.querySelector(".boby_questresult");
 
 	Quizz2.innerHTML = "";
 	Quizz3.innerHTML = "";
-
-	for(let i = 0;i < quizzAtual.questions.length;i++){
-		Quizz2.innerHTML += `
-			<article class="title_quest">
-				<h3>${quizzAtual.questions[i].title}</h3>
-			</article>
-		`
-		for(let k = 0; k < quizzAtual.questions[i].answers.length;k++){
-			Quizz2.innerHTML += ` 
+	/*<div class="questoesAqui">
+                <article class="title_quest">
+                    <h3>${quizzAtual.questions[i].title}</h3>
+                </article>
                 <article class="options_quest">
                     <figure class="option">
                         <img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
                         <figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
                     </figure>
+                    <figure class="option">
+                        <img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
+                        <figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
+                    </figure>
+                    <figure class="option">
+                        <img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
+                        <figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
+                    </figure>
+                    <figure class="option">
+                        <img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
+                        <figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
+                    </figure>
                 </article>
+            </div>
+			*/
+
+	for(let i = 0;i < quizzAtual.questions.length;i++){
+		for(let k = 0; k < quizzAtual.questions[i].answers.length;k++){
+			Quizz2.innerHTML += ` 
+			<div class="questoesAqui">
+			<article class="title_quest">
+				<h3>${quizzAtual.questions[i].title}</h3>
+			</article>
+			<article class="options_quest">
+				<figure class="option">
+					<img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
+					<figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
+				</figure>
+				<figure class="option">
+					<img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
+					<figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
+				</figure>
+				<figure class="option">
+					<img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
+					<figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
+				</figure>
+				<figure class="option">
+					<img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
+					<figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
+				</figure>
+			</article>
+		</div>
 			`
 		}
 	}
 
-	const Quizz4 = document.querySelector(".boby_quest");
-
-	Quizz4.innerHTML = Quizz2.innerHTML
-
 	for(let j = 0;j < quizzAtual.levels.length;j++){
 		Quizz3.innerHTML += `
-		<article class="title_result">
-			<h3>${quizzAtual.levels[j].title}</h3>
-		</article>
-		<article class="result">
-			<figure class="result_nivel">
-				<img class="image_quest" src="${quizzAtual.levels[j].image}" alt="Pacman">
-				<figcaption class="result_text">${quizzAtual.levels[j].text}</figcaption>
-			</figure>
-		</article>
+		<div class="resultados">
+			<article class="title_result">
+				<h3>${quizzAtual.levels[j].title}</h3>
+			</article>
+			<article class="result">
+				<figure class="result_nivel">
+					<img class="image_quest" src="${quizzAtual.levels[j].image}" alt="Pacman">
+					<figcaption class="result_text">${quizzAtual.levels[j].text}</figcaption>
+				</figure>
+			</article>
+		</div>
 		`
 	}
-
-	const Quizz5 = document.querySelector(".nivelResult");
-
-	Quizz5.innerHTML = Quizz3.innerHTML
 }
 
 function accessMyQuizz(){
