@@ -3,29 +3,54 @@ const API = "https://mock-api.driven.com.br/api/v6/buzzquizz";
 let totalDePerguntas = 0;
 let totalDeNiveis = 0;
 let quizzes = [];
+let meusQuizzes = [];
+let quizzAtual = [];
 let myQuizz = {};
+let ID_DO_QUIZZ;
+let atualTemp;
+
+obterQuizzes();
 	
 function obterQuizzes(){
     axios.get(`${API}/quizzes`).then(armazenarQuizzes);
 }
 
 function armazenarQuizzes(response){
-    quizzes = response.data;
+	if(localStorage.getItem(response.data.id) === null){
+		quizzes = response.data;
+	}else{
+		meusQuizzes = response.data;
+	}
+	
     renderizarQuizzes();
 }
 
 function renderizarQuizzes(){
     
-    const ulQuizz = document.querySelector(".quizzContainer");
-
+    const ulQuizz = document.querySelector(".listquizz.todos");
+	console.log(quizzes)
     ulQuizz.innerHTML = "";
 
     for(let i = 0;i < quizzes.length;i++){
         ulQuizz.innerHTML += `
-        <li class="quizz">
-            <img src="${quizzes[i].image}" alt="" srcset="">
-            <div class="quizzTitle"><h2>${quizzes[i].title}</h2></div>
-        </li>
+        <figure onclick="accessQuizz(this)" class="tumb_quizz">
+			<icon class="getID">${quizzes[i].id}</icon>
+        	<img src="${quizzes[i].image}" alt="">
+        	<figcaption>${quizzes[i].title}</figcaption>
+    	</figure>
+        `
+    }
+
+	const ulMeusQuizzes = document.querySelector(".listquizz.meus");
+	console.log(meusQuizzes)
+
+	for(let j = 0;j < meusQuizzes.length;j++){
+        ulMeusQuizzes.innerHTML += `
+        <figure onclick="accessQuizz(this)" class="tumb_quizz">
+			<icon class="getID">${meusQuizzes[j].id}</icon>
+        	<img src="${meusQuizzes[j].image}" alt="">
+        	<figcaption>${meusQuizzes[j].title}</figcaption>
+    	</figure>
         `
     }
 }
@@ -62,8 +87,6 @@ function enviarInfBasicas(){
 		myQuizz.title = title;
 		myQuizz.image = image;
 
-		console.log(myQuizz)
-
 		const listaPerguntas = document.querySelector(".inputs_2");
 		const listaNiveis = document.querySelector(".inputs_3");
 
@@ -73,7 +96,7 @@ function enviarInfBasicas(){
                 <div class="content">
                 <div class="testando">
                     <h4>Pergunta ${i+1}</h4>
-                    <ion-icon class="iconInputs" onclick="select(this)" name="brush-outline"></ion-icon>
+                    <ion-icon onclick="select(this)" name="brush-outline"></ion-icon>
                 </div>
                 <div class="testando2">
                     <h4>Pergunta ${i+1}</h4>
@@ -136,7 +159,8 @@ function criarPerguntas(){
 	for(let k = 0; k < totalDePerguntas; k++){
 		if(textoPergunta[k].value.length < 20 || !isImage(imageC[k].value) || 
 			respostaCorreta[k].value === '' || (respostaIncorreta1[k].value === '' &&
-			respostaIncorreta2[k].value === '' && respostaIncorreta3[k].value === '')){
+			respostaIncorreta2[k].value === '' && respostaIncorreta3[k].value === '') ||
+			corPergunta[k].length < 7){
         		conditionsNotMet = true;
     	}
 	}
@@ -217,13 +241,126 @@ function criarNiveis(){
 
 		document.querySelector(".imagem_final").innerHTML = `
 			<div>
-				<h5>${myQuizz.title}</h5>
+				<h5>Seu quizz está pronto!</h5>
 				<img src="${myQuizz.image}" alt="">
+				<figcaption>${myQuizz.title}</figcaption>
 			</div>
 		`
+		enviarQuizz();
+
 		document.querySelector(".pagequizz_3").classList.toggle("hidden");
 		document.querySelector(".pagequizz_4").classList.toggle("hidden");
 	}
+}
+
+
+
+function enviarQuizz(){
+	axios.post(`${API}/quizzes`,myQuizz).then(armazenarMeuQuizz);
+	axios.post(`${API}/quizzes`,myQuizz).catch(deuErro);
+}
+
+function deuErro(){
+	alert("eita");
+}
+
+function armazenarMeuQuizz(response){
+	localStorage.setItem("id", response.data);
+}
+
+function accessQuizz(elemento){
+	ID_DO_QUIZZ = elemento.querySelector(".getID").innerHTML;
+	obterQuizzEspecifico(ID_DO_QUIZZ)
+}
+
+function obterQuizzEspecifico(ID_DO_QUIZZ){
+	axios.get(`${API}/quizzes/${ID_DO_QUIZZ}`).then(armazenarQuizzAtual);
+}
+
+function armazenarQuizzAtual(response){
+	quizzAtual = [];
+	quizzAtual = response.data;
+	renderizarQuizzAtual();
+}
+
+function renderizarQuizzAtual(){
+	document.querySelector(".screen1_listquizz").classList.toggle("hidden");
+	document.querySelector(".screen2_pagequizz").classList.toggle("hidden");
+
+	let Quizz = document.querySelector(".screen2_pagequizz");
+	
+	Quizz.innerHTML = `
+		<article class="top_quizz">
+			<figure class="head">
+				<img class="imagetop_quizz" src="${quizzAtual.image}" alt="">
+				<figcaption class>${quizzAtual.title}</figcaption>
+			</figure>
+		</article>
+		<section class="boby_quest">
+                    
+                   
+        </section>
+        <section class="boby_questresult">
+            <section class="nivelResult">
+
+            </section>
+                   
+            <button class="reloadquizz_button">Reiniciar Quizz</button>
+            <button onclick="returnHomeTodos()" class="homeback_button">Voltar pra Home</button>
+        </section>
+	`
+	const Quizz2 = document.querySelector(".boby_quest");
+	const Quizz3 = document.querySelector(".nivelResult");
+
+	Quizz2.innerHTML = "";
+	Quizz3.innerHTML = "";
+
+	for(let i = 0;i < quizzAtual.questions.length;i++){
+		Quizz2.innerHTML += `
+			<article class="title_quest">
+				<h3>${quizzAtual.questions[i].title}</h3>
+			</article>
+		`
+		for(let k = 0; k < quizzAtual.questions[i].answers.length;k++){
+			Quizz2.innerHTML += ` 
+                <article class="options_quest">
+                    <figure class="option">
+                        <img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
+                        <figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
+                    </figure>
+                </article>
+			`
+		}
+	}
+
+	const Quizz4 = document.querySelector(".boby_quest");
+
+	Quizz4.innerHTML = Quizz2.innerHTML
+
+	for(let j = 0;j < quizzAtual.levels.length;j++){
+		Quizz3.innerHTML += `
+		<article class="title_result">
+			<h3>${quizzAtual.levels[j].title}</h3>
+		</article>
+		<article class="result">
+			<figure class="result_nivel">
+				<img class="image_quest" src="${quizzAtual.levels[j].image}" alt="Pacman">
+				<figcaption class="result_text">${quizzAtual.levels[j].text}</figcaption>
+			</figure>
+		</article>
+		`
+	}
+
+	const Quizz5 = document.querySelector(".nivelResult");
+
+	Quizz5.innerHTML = Quizz3.innerHTML
+}
+
+function accessMyQuizz(){
+	document.querySelector(".pagequizz_4").classList.toggle("hidden");
+	document.querySelector(".screen3_pagequizz").classList.toggle("hidden");
+
+	accessQuizz(atualTemp);
 }
 
 function select(elemento){
@@ -233,4 +370,15 @@ const perguntaSelecionada = document.querySelector(".content.selecionado");
     perguntaSelecionada.classList.toggle("selecionado");
   }
   elemento.parentNode.parentNode.classList.toggle("selecionado");
+}
+
+function returnHomeTodos(){
+	document.querySelector(".screen2_pagequizz").classList.toggle("hidden");
+	document.querySelector(".screen1_listquizz").classList.toggle("hidden");
+}
+
+function returnHome(){
+	document.querySelector(".pagequizz_4").classList.toggle("hidden");
+	document.querySelector(".screen3_pagequizz").classList.toggle("hidden");
+	document.querySelector(".screen1_listquizz").classList.toggle("hidden");
 }

@@ -9,6 +9,7 @@ body{
 article::-webkit-scrollbar{
     display: none;
 }
+
 figure{
     margin-top: 10px;
     margin-bottom: 30px;
@@ -57,6 +58,7 @@ h5{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 .screen3_pagequizz{
     margin-left: 10%;
@@ -254,16 +256,16 @@ div{
     text-align: center;
     display: inherit;
 }
-.testando2{
+/* .testando2{
     
-}
+} */
 button::placeholder{
     align-items: center;
     justify-content: center;
 }
-.iconInputs{
-
-}
+/* .iconInputs{
+    
+} */
 input{
     border: 1px solid rgba(209, 209, 209, 1);
     border-radius: 6px;
