@@ -1,7 +1,4 @@
-html{
-    width: 100vw;
-    height: 100vh;
-}
+
 body{
     position: relative;
     width: 99vw;
@@ -45,6 +42,13 @@ header{
     margin-top: 20px;
     margin-bottom: 10px;
 }
+.result{
+    background-color: red;
+}
+.nivelResult{
+    width: 100%;
+    background-color: #000000;
+}
 header > h1{
     font-style: normal;
     font-weight: 700;
@@ -81,6 +85,54 @@ h5{
 .head:hover{
     cursor:default;
 }
+.nivelResult{
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: flex-end;
+    border-radius: 12px;
+}
+.boby_questresult{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: contents;
+}
+.title_result{
+    
+}
+.homeback_button{
+    background-color: #ffffff;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #818181;
+    border: none;
+    margin: 20px
+}
+.reloadquizz_button{
+    margin-top: 30px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFF5F4;
+    width: 220px;
+    height: 44px;
+    background-color: #EC362D;
+    border-radius: 15px;
+}
 .top_quizz{
     justify-content: center;
     align-content: center;
@@ -97,7 +149,7 @@ h5{
 }
 .boby_quest{
     background-color: blue;
-    width: 100%;
+    width: 80%;
 }
 .options_quest{
     background-color: green;
@@ -320,16 +372,10 @@ div{
     text-align: center;
     display: inherit;
 }
-/* .testando2{
-    
-} */
 button::placeholder{
     align-items: center;
     justify-content: center;
 }
-/* .iconInputs{
-    
-} */
 input{
     border: 1px solid rgba(209, 209, 209, 1);
     border-radius: 6px;

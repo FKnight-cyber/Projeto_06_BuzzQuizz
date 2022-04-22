@@ -53,7 +53,7 @@ function renderizarQuizzes(){
     for(let i = 0;i < quizzes.length;i++){
         ulQuizz.innerHTML += `
         <figure onclick="accessQuizz(this)" class="tumb_quizz">
-			<icon class="getID">${quizzes[i].id}</icon>
+			<icon class="getID hidden">${quizzes[i].id}</icon>
         	<img src="${quizzes[i].image}" alt="">
         	<figcaption>${quizzes[i].title}</figcaption>
     	</figure>
@@ -65,7 +65,7 @@ function renderizarQuizzes(){
 	for(let j = 0;j < meusQuizzes.length;j++){
         ulMeusQuizzes.innerHTML += `
         <figure onclick="accessQuizz(this)" class="tumb_quizz">
-			<icon class="getID">${meusQuizzes[j].id}</icon>
+			<icon class="getID hidden">${meusQuizzes[j].id}</icon>
         	<img src="${meusQuizzes[j].image}" alt="">
         	<figcaption>${meusQuizzes[j].title}</figcaption>
     	</figure>
@@ -291,7 +291,9 @@ function armazenarMeuQuizz(response){
 function accessQuizz(elemento){
 	ID_DO_QUIZZ = elemento.querySelector(".getID").innerHTML;
 	obterQuizzEspecifico(ID_DO_QUIZZ)
+	window.scrollTo(0, document.body.scrollTop);
 }
+
 
 function obterQuizzEspecifico(ID_DO_QUIZZ){
 	axios.get(`${API}/quizzes/${ID_DO_QUIZZ}`).then(armazenarQuizzAtual);
@@ -313,7 +315,7 @@ function renderizarQuizzAtual(){
 		<article class="top_quizz">
 			<figure class="head">
 				<img class="imagetop_quizz" src="${quizzAtual.image}" alt="">
-				<figcaption class>${quizzAtual.title}</figcaption>
+				<figcaption class="titleImgTop">${quizzAtual.title}</figcaption>
 			</figure>
 		</article>
 		<section class="boby_quest">
