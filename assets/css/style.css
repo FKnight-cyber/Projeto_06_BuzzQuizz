@@ -254,16 +254,16 @@ div{
     text-align: center;
     display: inherit;
 }
-.testando2{
+/* .testando2{
     
-}
+} */
 button::placeholder{
     align-items: center;
     justify-content: center;
 }
-.iconInputs{
-
-}
+/* .iconInputs{
+    
+} */
 input{
     border: 1px solid rgba(209, 209, 209, 1);
     border-radius: 6px;

@@ -217,8 +217,9 @@ function criarNiveis(){
 
 		document.querySelector(".imagem_final").innerHTML = `
 			<div>
-				<h5>${myQuizz.title}</h5>
+				<h5>Seu quizz está pronto!</h5>
 				<img src="${myQuizz.image}" alt="">
+				<figcaption>${myQuizz.title}</figcaption>
 			</div>
 		`
 		document.querySelector(".pagequizz_3").classList.toggle("hidden");
