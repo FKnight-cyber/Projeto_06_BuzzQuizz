@@ -18,10 +18,10 @@
 </head>
 
 <body>
-    <header class="">
-        <h1 onclick="reloadWindown()" class="logo_text">BuzzQuizz</h1>
-    </header>
     <main>
+        <header class="">
+            <h1 onclick="reloadWindown()" class="logo_text">BuzzQuizz</h1>
+        </header>
         <nav class="screen1_listquizz">
             <section class="mylistquizz_none">
                 <p>Você não criou nenhum<br>quizz ainda :(</p>
@@ -30,7 +30,7 @@
             <article class="listquizz meus hidden">
                 <div class="mylistquizz_title">
                     <h2>Seus Quizzes</h2>
-                    <ion-icon criarQuizz() name="add-circle"></ion-icon>
+                    <ion-icon onclick="armazenarMeuQuizz()" name="add-circle"></ion-icon>
                 </div>
             </article>
             <article class="listquizz todos">
