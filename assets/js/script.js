@@ -3,32 +3,51 @@ const API = "https://mock-api.driven.com.br/api/v6/buzzquizz";
 let totalDePerguntas = 0;
 let totalDeNiveis = 0;
 let quizzes = [];
+let geral = [];
 let meusQuizzes = [];
 let quizzAtual = [];
 let myQuizz = {};
 let ID_DO_QUIZZ;
 let atualTemp;
+let meusQuizzesID = [];
+const idSerializado = localStorage.getItem("id");
 
+checkMyQuizzes();
 obterQuizzes();
+
 	
 function obterQuizzes(){
     axios.get(`${API}/quizzes`).then(armazenarQuizzes);
 }
 
 function armazenarQuizzes(response){
-	if(localStorage.getItem(response.data.id) === null){
-		quizzes = response.data;
-	}else{
-		meusQuizzes = response.data;
+	geral = response.data
+	for(let i = 0;i <= meusQuizzesID.length;i++){
+		for(let k = 0; k < geral.length;k++){	
+			if(meusQuizzesID[i] === geral[k].id){
+				meusQuizzes.push(geral[k]);
+			}else{
+				quizzes.push(geral[k]);
+			}
+		}
 	}
-	
     renderizarQuizzes();
 }
+
+function checkMyQuizzes(){
+	if(localStorage.length !== 0){
+		meusQuizzesID = JSON.parse(idSerializado);
+	}
+	if(meusQuizzesID.length !== 0 ){
+		document.querySelector('.mylistquizz_none').classList.toggle("hidden");
+		document.querySelector('.listquizz.meus').classList.toggle("hidden");
+	}
+}
+
 
 function renderizarQuizzes(){
     
     const ulQuizz = document.querySelector(".listquizz.todos");
-	console.log(quizzes)
     ulQuizz.innerHTML = "";
 
     for(let i = 0;i < quizzes.length;i++){
@@ -42,7 +61,6 @@ function renderizarQuizzes(){
     }
 
 	const ulMeusQuizzes = document.querySelector(".listquizz.meus");
-	console.log(meusQuizzes)
 
 	for(let j = 0;j < meusQuizzes.length;j++){
         ulMeusQuizzes.innerHTML += `
@@ -253,8 +271,6 @@ function criarNiveis(){
 	}
 }
 
-
-
 function enviarQuizz(){
 	axios.post(`${API}/quizzes`,myQuizz).then(armazenarMeuQuizz);
 	axios.post(`${API}/quizzes`,myQuizz).catch(deuErro);
@@ -264,8 +280,12 @@ function deuErro(){
 	alert("eita");
 }
 
-function armazenarMeuQuizz(response){
-	localStorage.setItem("id", response.data);
+function armazenarMeuQuizz(){
+	const temp = localStorage.setItem("id",response.data.id);
+	
+	meusQuizzesID.push(Number(temp));
+	const myQuizzesIDSerializado = JSON.stringify(meusQuizzesID);
+	localStorage.setItem("id", myQuizzesIDSerializado);
 }
 
 function accessQuizz(elemento){
