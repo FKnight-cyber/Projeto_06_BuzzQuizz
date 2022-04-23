@@ -337,11 +337,10 @@ function renderizarQuizzAtual(){
 			 
         </section>
         <section class="boby_questresult">
-    
-                   
-            <button class="reloadquizz_button">Reiniciar Quizz</button>
-            <button onclick="returnHomeTodos()" class="homeback_button">Voltar pra Home</button>
+
         </section>
+		<button class="reloadquizz_button">Reiniciar Quizz</button>
+		<button onclick="returnHomeTodos()" class="homeback_button">Voltar pra Home</button>
 	`
 	const Quizz2 = document.querySelector(".boby_quest");
 	const Quizz3 = document.querySelector(".boby_questresult");
@@ -355,15 +354,18 @@ function renderizarQuizzAtual(){
 				<article class="title_quest">
 					<h3>${quizzAtual.questions[i].title}</h3>
 				</article>
+				<section class="options">
+
+				</section>
 			</div>
 		`
-		const Quizz4 = document.querySelector(`.questoesAqui${i+1}.questao`);
+		const Quizz4 = document.querySelector(`.questoesAqui${i+1}.questao section`);
 		for(let k = 0; k < quizzAtual.questions[i].answers.length;k++){
 			Quizz4.innerHTML += ` 
-			<article onclick="answerQuizz(this)" class="options_quest">
+			<article onclick="answerQuizz(this)" class="option_quest">
 				<figure class="option">
 					<img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="">
-					<figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
+					<figcaption class="titleOptionQuest">${quizzAtual.questions[i].answers[k].text}</figcaption>
 				</figure>
 			</article>
 			`
