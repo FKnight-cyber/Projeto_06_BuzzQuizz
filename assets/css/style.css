@@ -103,7 +103,7 @@ h5{
     display: contents;
 }
 .title_result{
-    
+    color: #FAFAFA;
 }
 .homeback_button{
     background-color: #ffffff;
@@ -150,6 +150,9 @@ h5{
 .boby_quest{
     background-color: blue;
     width: 80%;
+}
+.imagem_final{
+    width: 100%;
 }
 .options_quest{
     background-color: green;
