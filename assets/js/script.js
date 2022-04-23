@@ -360,9 +360,9 @@ function renderizarQuizzAtual(){
 		const Quizz4 = document.querySelector(`.questoesAqui${i+1}.questao`);
 		for(let k = 0; k < quizzAtual.questions[i].answers.length;k++){
 			Quizz4.innerHTML += ` 
-			<article class="options_quest">
+			<article onclick="answerQuizz(this)" class="options_quest">
 				<figure class="option">
-					<img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
+					<img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="">
 					<figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
 				</figure>
 			</article>
@@ -372,13 +372,13 @@ function renderizarQuizzAtual(){
 
 	for(let j = 0;j < quizzAtual.levels.length;j++){
 		Quizz3.innerHTML += `
-		<div class="resultados">
+		<div class="resultados hidden">
 			<article class="title_result">
 				<h3>${quizzAtual.levels[j].title}</h3>
 			</article>
 			<article class="result">
 				<figure class="result_nivel">
-					<img class="image_quest" src="${quizzAtual.levels[j].image}" alt="Pacman">
+					<img class="image_quest" src="${quizzAtual.levels[j].image}" alt="">
 					<figcaption class="result_text">${quizzAtual.levels[j].text}</figcaption>
 				</figure>
 			</article>
@@ -402,6 +402,37 @@ function accessMyQuizz(){
 	obterQuizzEspecifico(meusQuizzesID[meusQuizzesID.length - 1]);
 	
 	window.scrollTo(0, document.body.scrollTop);
+}
+
+function answerQuizz(elemento){
+	const correctAnswers = [];
+	let correctAnswer;
+
+	for(let i = 0;i < quizzAtual.questions.length;i++){
+		for(let k = 0;k < quizzAtual.questions[i].answers.length;k++){
+			if(quizzAtual.questions[i].answers[k].isCorrectAnswer === true){
+				correctAnswers.push(quizzAtual.questions[i].answers[k].text)
+			}
+		}
+	}
+
+	const questaoAtual = elemento.parentNode;
+	const todasPerguntas = document.querySelectorAll(".questao");
+
+	for(let j=0; j < todasPerguntas.length; j++){
+		if(questaoAtual === todasPerguntas[j]){
+			correctAnswer = correctAnswers[j];
+		}
+	}
+
+	const myAnswer = elemento.querySelector("figcaption").innerHTML;
+
+	if(myAnswer === correctAnswer){
+		/* manipular a div pra alterar a cor do texto pra verde
+		elemento.classList.add("classequealteraacordadiv")
+		*/
+		alert("voce acertou")
+	}
 }
 
 function select(elemento){
