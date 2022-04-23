@@ -87,6 +87,11 @@ function isImage(url) {
     return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
   }
 
+function isColor (color) {
+    const regexColor = /^#([0-9]|[A-F]|[a-f]){6}$/;
+    return regexColor.test(color);
+}
+
 function enviarInfBasicas(){
 	
     const title = document.querySelector(".title").value
@@ -178,7 +183,7 @@ function criarPerguntas(){
 		if(textoPergunta[k].value.length < 20 || !isImage(imageC[k].value) || 
 			respostaCorreta[k].value === '' || (respostaIncorreta1[k].value === '' &&
 			respostaIncorreta2[k].value === '' && respostaIncorreta3[k].value === '') ||
-			corPergunta[k].length < 7){
+			!isColor(corPergunta[k].value)){
         		conditionsNotMet = true;
     	}
 	}
@@ -306,6 +311,10 @@ function armazenarQuizzAtual(response){
 }
 
 function renderizarQuizzAtual(){
+	for(let f = 0; f < quizzAtual.questions.length;f++){
+		embaralharArray(quizzAtual.questions[f].answers)
+	}
+
 	const x = document.querySelector(".screen1_listquizz.hidden");
 	
 	if(x === null){
@@ -325,7 +334,7 @@ function renderizarQuizzAtual(){
 			</figure>
 		</article>
 		<section class="boby_quest">
-              
+			 
         </section>
         <section class="boby_questresult">
     
@@ -341,31 +350,22 @@ function renderizarQuizzAtual(){
 	Quizz3.innerHTML = "";
 
 	for(let i = 0;i < quizzAtual.questions.length;i++){
+		Quizz2.innerHTML += `
+			<div class="questoesAqui${i+1} questao">
+				<article class="title_quest">
+					<h3>${quizzAtual.questions[i].title}</h3>
+				</article>
+			</div>
+		`
+		const Quizz4 = document.querySelector(`.questoesAqui${i+1}.questao`);
 		for(let k = 0; k < quizzAtual.questions[i].answers.length;k++){
-			Quizz2.innerHTML += ` 
-			<div class="questoesAqui">
-			<article class="title_quest">
-				<h3>${quizzAtual.questions[i].title}</h3>
-			</article>
+			Quizz4.innerHTML += ` 
 			<article class="options_quest">
 				<figure class="option">
 					<img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
 					<figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
 				</figure>
-				<figure class="option">
-					<img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
-					<figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
-				</figure>
-				<figure class="option">
-					<img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
-					<figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
-				</figure>
-				<figure class="option">
-					<img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
-					<figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
-				</figure>
 			</article>
-		</div>
 			`
 		}
 	}
@@ -385,6 +385,13 @@ function renderizarQuizzAtual(){
 		</div>
 		`
 	}
+
+	const perguntas = document.querySelectorAll(".title_quest");
+
+	for(let k = 0;k < quizzAtual.questions.length;k++){
+		perguntas[k].setAttribute("style", `background-color: ${quizzAtual.questions[k].color};`);
+	}
+
 }
 
 function accessMyQuizz(){
@@ -425,4 +432,12 @@ function quizzRefreshing(){
 
 function reloadWindown(){
 	window.location.reload();
+}
+
+function embaralharArray(arr) {
+	for (let i = arr.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[arr[i], arr[j]] = [arr[j], arr[i]];
+	}
+	return arr;
 }
