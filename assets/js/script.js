@@ -306,7 +306,12 @@ function armazenarQuizzAtual(response){
 }
 
 function renderizarQuizzAtual(){
-	document.querySelector(".screen1_listquizz").classList.toggle("hidden");
+	const x = document.querySelector(".screen1_listquizz.hidden");
+	
+	if(x === null){
+		document.querySelector(".screen1_listquizz").classList.add("hidden");
+	}
+	
 	document.querySelector(".screen2_pagequizz").classList.toggle("hidden");
 	
 	let Quizz = document.querySelector(".screen2_pagequizz");
@@ -334,30 +339,6 @@ function renderizarQuizzAtual(){
 
 	Quizz2.innerHTML = "";
 	Quizz3.innerHTML = "";
-	/*<div class="questoesAqui">
-                <article class="title_quest">
-                    <h3>${quizzAtual.questions[i].title}</h3>
-                </article>
-                <article class="options_quest">
-                    <figure class="option">
-                        <img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
-                        <figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
-                    </figure>
-                    <figure class="option">
-                        <img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
-                        <figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
-                    </figure>
-                    <figure class="option">
-                        <img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
-                        <figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
-                    </figure>
-                    <figure class="option">
-                        <img class="image_quest" src="${quizzAtual.questions[i].answers[k].image}" alt="Pacman">
-                        <figcaption class>${quizzAtual.questions[i].answers[k].text}</figcaption>
-                    </figure>
-                </article>
-            </div>
-			*/
 
 	for(let i = 0;i < quizzAtual.questions.length;i++){
 		for(let k = 0; k < quizzAtual.questions[i].answers.length;k++){
@@ -407,10 +388,13 @@ function renderizarQuizzAtual(){
 }
 
 function accessMyQuizz(){
+	obterQuizzes();
 	document.querySelector(".pagequizz_4").classList.toggle("hidden");
 	document.querySelector(".screen3_pagequizz").classList.toggle("hidden");
 
-	accessQuizz(atualTemp);
+	obterQuizzEspecifico(meusQuizzesID[meusQuizzesID.length - 1]);
+	
+	window.scrollTo(0, document.body.scrollTop);
 }
 
 function select(elemento){
@@ -423,11 +407,13 @@ const perguntaSelecionada = document.querySelector(".content.selecionado");
 }
 
 function returnHomeTodos(){
+	obterQuizzes();
 	document.querySelector(".screen2_pagequizz").classList.toggle("hidden");
 	document.querySelector(".screen1_listquizz").classList.toggle("hidden");
 }
 
 function returnHome(){
+	obterQuizzes();
 	document.querySelector(".pagequizz_4").classList.toggle("hidden");
 	document.querySelector(".screen3_pagequizz").classList.toggle("hidden");
 	document.querySelector(".screen1_listquizz").classList.toggle("hidden");
