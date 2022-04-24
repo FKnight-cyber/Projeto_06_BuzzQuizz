@@ -476,3 +476,16 @@ input{
 figure:hover , h1:hover ,button:hover{
     cursor: pointer;
 }
+
+.errada{
+    color: red;
+}
+
+.certa{
+    color: green;
+}
+
+.opacidade{
+    opacity: 0.3;
+}
+
