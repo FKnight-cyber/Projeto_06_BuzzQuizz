@@ -8,13 +8,13 @@ let meusQuizzes = [];
 let quizzAtual = [];
 let myQuizz = {};
 let ID_DO_QUIZZ;
-let atualTemp;
+let acertos = 0;
+let questoesRespondidas = 0;
 let meusQuizzesID = [];
 const idSerializado = localStorage.getItem("id");
 
 checkMyQuizzes();
 obterQuizzes();
-
 
 function obterQuizzes() {
 	axios.get(`${API}/quizzes`).then(armazenarQuizzes);
@@ -247,7 +247,6 @@ function criarNiveis() {
 	}
 
 	if (conditionsNotMet || !hasZero) {
-		console.log(hasZero)
 		alert("Preencha os dados corretamente");
 	} else {
 		for (let k = 0; k < totalDeNiveis; k++) {
@@ -338,8 +337,8 @@ function renderizarQuizzAtual() {
         <section class="boby_questresult">
 
         </section>
-		<button class="reloadquizz_button">Reiniciar Quizz</button>
-		<button onclick="returnHomeTodos()" class="homeback_button">Voltar pra Home</button>
+		<button onclick="reiniciarQuizz()" class="reloadquizz_button hidden">Reiniciar Quizz</button>
+		<button onclick="returnHomeTodos()" class="homeback_button hidden">Voltar pra Home</button>
 	`
 	const Quizz2 = document.querySelector(".boby_quest");
 	const Quizz3 = document.querySelector(".boby_questresult");
@@ -370,7 +369,7 @@ function renderizarQuizzAtual() {
 			`
 		}
 	}
-
+	
 	for (let j = 0; j < quizzAtual.levels.length; j++) {
 		Quizz3.innerHTML += `
 		<div class="resultados hidden">
@@ -410,7 +409,6 @@ function answerQuizz(elemento) {
 	const todasPerguntas = document.querySelectorAll(".questao");
 	const myAnswer = elemento.querySelector("figcaption").innerHTML;
 	const correctAnswers = [];
-	let k;
 	let correctAnswer;
 
 	for (let i = 0; i < quizzAtual.questions.length; i++) {
@@ -426,9 +424,10 @@ function answerQuizz(elemento) {
 			correctAnswer = correctAnswers[i];
 		}
 	}
-	
+
 	if(myAnswer === correctAnswer) {
 		elemento.classList.add("certa");
+		acertos++;
 		for(let i = 0; i < elemento.parentNode.children.length;i++){
 			if(elemento.parentNode.children[i] !== elemento){
 				elemento.parentNode.children[i].classList.add("opacidade")
@@ -452,7 +451,88 @@ function answerQuizz(elemento) {
 			}
 		}
 	}
+	
+	questoesRespondidas++;
+
+	if(questoesRespondidas === quizzAtual.questions.length){
+		questoesRespondidas = 0;
+		calcularAcertos();
+	}
 }
+
+function calcularAcertos(){
+	let k = 0;
+	const Quizz = document.querySelector(".boby_questresult");
+	const totalAcertos = Math.trunc((acertos/quizzAtual.questions.length)*100);
+
+	for(let j = 0;j < quizzAtual.levels.length;j++){
+		if(totalAcertos=== 0 && quizzAtual.levels[j].minValue === 0){
+			Quizz3.innerHTML += `
+			<div class="resultados">
+				<article class="title_result">
+					<h3>${quizzAtual.levels[j].title}</h3>
+				</article>
+				<article class="result">
+					<figure class="result_nivel">
+						<img class="image_quest" src="${quizzAtual.levels[j].image}" alt="">
+						<figcaption class="result_text">${quizzAtual.levels[j].text}</figcaption>
+					</figure>
+				</article>
+			</div>
+			`
+			break;
+		}else if(totalAcertos!== 0 && quizzAtual.levels[j].minValue > 0){
+		Quizz.innerHTML += `
+			<div class="resultados">
+				<article class="title_result">
+					<h3>${quizzAtual.levels[j].title}</h3>
+				</article>
+				<article class="result">
+					<figure class="result_nivel">
+						<img class="image_quest" src="${quizzAtual.levels[j].image}" alt="">
+						<figcaption class="result_text">${quizzAtual.levels[j].text}</figcaption>
+					</figure>
+				</article>
+			</div>
+			`	
+			break;
+		}else if(totalAcertos!== 0 && quizzAtual.levels[j].minValue > totalAcertos){
+			Quizz.innerHTML += `
+				<div class="resultados">
+					<article class="title_result">
+						<h3>${quizzAtual.levels[j].title}</h3>
+					</article>
+					<article class="result">
+						<figure class="result_nivel">
+							<img class="image_quest" src="${quizzAtual.levels[j].image}" alt="">
+							<figcaption class="result_text">${quizzAtual.levels[j].text}</figcaption>
+						</figure>
+					</article>
+				</div>
+				`
+				break;
+		}else if(totalAcertos!== 0 && quizzAtual.levels[j].minValue < totalAcertos &&
+		quizzAtual.levels[j].minValue){
+			Quizz.innerHTML += `
+				<div class="resultados">
+					<article class="title_result">
+						<h3>${quizzAtual.levels[j].title}</h3>
+					</article>
+					<article class="result">
+						<figure class="result_nivel">
+							<img class="image_quest" src="${quizzAtual.levels[j].image}" alt="">
+							<figcaption class="result_text">${quizzAtual.levels[j].text}</figcaption>
+						</figure>
+					</article>
+				</div>
+				`	
+				break;
+		}
+	}
+	document.querySelector(".reloadquizz_button").classList.toggle("hidden");
+	document.querySelector(".homeback_button").classList.toggle("hidden");
+}
+
 
 function select(elemento) {
 	const perguntaSelecionada = document.querySelector(".content.selecionado");
@@ -474,6 +554,14 @@ function returnHome() {
 	document.querySelector(".pagequizz_4").classList.toggle("hidden");
 	document.querySelector(".screen3_pagequizz").classList.toggle("hidden");
 	document.querySelector(".screen1_listquizz").classList.toggle("hidden");
+}
+
+function reiniciarQuizz(){
+	const Quizz = document.querySelector(".boby_questresult");
+	Quizz.innerHTML=""
+	document.querySelector(".reloadquizz_button").classList.toggle("hidden");
+	document.querySelector(".homeback_button").classList.toggle("hidden");
+	quizzRefreshing();
 }
 
 function quizzRefreshing() {
