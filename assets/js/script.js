@@ -426,27 +426,30 @@ function answerQuizz(elemento) {
 	}
 
 	if(myAnswer === correctAnswer) {
+		elemento.onclick = " ";
 		elemento.classList.add("certa");
 		acertos++;
 		for(let i = 0; i < elemento.parentNode.children.length;i++){
+			elemento.parentNode.children[i].onclick = " ";
 			if(elemento.parentNode.children[i] !== elemento){
 				elemento.parentNode.children[i].classList.add("opacidade")
 				if(elemento.parentNode.children[i].querySelector("figcaption").innerHTML !== correctAnswer){
-					elemento.parentNode.children[i].classList.add("errada")
+					elemento.parentNode.children[i].classList.add("errada");
 				}else{
-					elemento.parentNode.children[i].classList.add("certa")
+					elemento.parentNode.children[i].classList.add("certa");
 				}
 			}
 		}
 	}else{
 		elemento.classList.add("errada");
 		for(let i = 0; i < elemento.parentNode.children.length;i++){
+			elemento.parentNode.children[i].onclick = " ";
 			if(elemento.parentNode.children[i] !== elemento){
-				elemento.parentNode.children[i].classList.add("opacidade")
+				elemento.parentNode.children[i].classList.add("opacidade");
 				if(elemento.parentNode.children[i].querySelector("figcaption").innerHTML !== correctAnswer){
-					elemento.parentNode.children[i].classList.add("errada")
+					elemento.parentNode.children[i].classList.add("errada");
 				}else{
-					elemento.parentNode.children[i].classList.add("certa")
+					elemento.parentNode.children[i].classList.add("certa");
 				}
 			}
 		}
@@ -467,7 +470,7 @@ function calcularAcertos(){
 
 	for(let j = 0;j < quizzAtual.levels.length;j++){
 		if(totalAcertos=== 0 && quizzAtual.levels[j].minValue === 0){
-			Quizz3.innerHTML += `
+			Quizz.innerHTML += `
 			<div class="resultados">
 				<article class="title_result">
 					<h3>${quizzAtual.levels[j].title}</h3>
@@ -480,8 +483,8 @@ function calcularAcertos(){
 				</article>
 			</div>
 			`
-			break;
-		}else if(totalAcertos!== 0 && quizzAtual.levels[j].minValue > 0){
+		}
+		if(totalAcertos!== 0 && quizzAtual.levels[j].minValue > 0){
 		Quizz.innerHTML += `
 			<div class="resultados">
 				<article class="title_result">
@@ -495,38 +498,6 @@ function calcularAcertos(){
 				</article>
 			</div>
 			`	
-			break;
-		}else if(totalAcertos!== 0 && quizzAtual.levels[j].minValue > totalAcertos){
-			Quizz.innerHTML += `
-				<div class="resultados">
-					<article class="title_result">
-						<h3>${quizzAtual.levels[j].title}</h3>
-					</article>
-					<article class="result">
-						<figure class="result_nivel">
-							<img class="image_quest" src="${quizzAtual.levels[j].image}" alt="">
-							<figcaption class="result_text">${quizzAtual.levels[j].text}</figcaption>
-						</figure>
-					</article>
-				</div>
-				`
-				break;
-		}else if(totalAcertos!== 0 && quizzAtual.levels[j].minValue < totalAcertos &&
-		quizzAtual.levels[j].minValue){
-			Quizz.innerHTML += `
-				<div class="resultados">
-					<article class="title_result">
-						<h3>${quizzAtual.levels[j].title}</h3>
-					</article>
-					<article class="result">
-						<figure class="result_nivel">
-							<img class="image_quest" src="${quizzAtual.levels[j].image}" alt="">
-							<figcaption class="result_text">${quizzAtual.levels[j].text}</figcaption>
-						</figure>
-					</article>
-				</div>
-				`	
-				break;
 		}
 	}
 	document.querySelector(".reloadquizz_button").classList.toggle("hidden");
