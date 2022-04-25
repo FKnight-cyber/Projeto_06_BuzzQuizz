@@ -40,7 +40,7 @@ function checkMyQuizzes() {
 	}
 	if (meusQuizzesID.length !== 0) {
 		document.querySelector('.mylistquizz_none').classList.toggle("hidden");
-		document.querySelector('.listquizz.meus').classList.toggle("hidden");
+		document.querySelector('.meus').classList.toggle("hidden");
 	}
 }
 
@@ -48,11 +48,11 @@ function checkMyQuizzes() {
 function renderizarQuizzes() {
 
 	const ulQuizz = document.querySelector(".listquizz.todos");
-	ulQuizz.innerHTML = "";
+	ulQuizz.innerHTML = "<h2>Todos Quizzes</h2><br>";
 
 	for (let i = 0; i < quizzes.length; i++) {
 		ulQuizz.innerHTML += `
-        <figure onclick="accessQuizz(this)" class="tumb_quizz">
+        <figure onclick="accessQuizz(this)" class="tumb_quizz animate__flipInX">
 			<icon class="getID hidden">${quizzes[i].id}</icon>
         	<img src="${quizzes[i].image}" alt="">
         	<figcaption>${quizzes[i].title}</figcaption>
@@ -60,11 +60,11 @@ function renderizarQuizzes() {
         `
 	}
 
-	const ulMeusQuizzes = document.querySelector(".listquizz.meus");
+	const ulMeusQuizzes = document.querySelector(".meus");
 
 	for (let j = 0; j < meusQuizzes.length; j++) {
 		ulMeusQuizzes.innerHTML += `
-        <figure onclick="accessQuizz(this)" class="tumb_quizz">
+        <figure onclick="accessQuizz(this)" class="tumb_meusquizz">
 			<icon class="getID hidden">${meusQuizzes[j].id}</icon>
         	<img src="${meusQuizzes[j].image}" alt="">
         	<figcaption>${meusQuizzes[j].title}</figcaption>
@@ -115,8 +115,8 @@ function enviarInfBasicas() {
 
 		for (let i = 0; i < qtdPerguntas; i++) {
 			listaPerguntas.innerHTML += `
-			<article class="newinputs">
-                <div class="content">
+			<section class="newinputs">
+                <article class="content">
                 <div class="testando">
                     <h4>Pergunta ${i + 1}</h4>
                     <ion-icon onclick="select(this)" name="brush-outline"></ion-icon>
@@ -138,15 +138,15 @@ function enviarInfBasicas() {
                     <input class="respostaIncorreta3" type="text" placeholder="Resposta incorreta 3">
                     <input class="imagemErrada3" type="text" placeholder="URL da imagem 3">
                 </div>
-            	</div>  
-            </article>
+            	</article>  
+            </section>
 			`
 		}
 
 		for (let i = 0; i < qtdNiveis; i++) {
 			listaNiveis.innerHTML += `
-			<article class="newinputs">
-                <div class="content">
+			<section class="newinputs">
+                <article class="content">
                     <div class="testando">
                         <h4>Nivel ${i + 1}</h4>
                         <ion-icon onclick="select(this)" name="brush-outline"></ion-icon>
@@ -158,8 +158,8 @@ function enviarInfBasicas() {
                     <input class="imageNivel" type="url" name="" id="" placeholder="URL da imagem do nível">
                     <input class="textoNivel" class="desc_nivel" type="text" name="" id="" placeholder="Descrição do nível">
                     </div>
-                </div>
-            </article>
+                </article>
+            </section>
 			`
 		}
 	}
@@ -262,11 +262,11 @@ function criarNiveis() {
 		myQuizz['levels'] = arr;
 
 		document.querySelector(".imagem_final").innerHTML = `
-			<div>
+			<section>
 				<h5>Seu quizz está pronto!</h5>
 				<img src="${myQuizz.image}" alt="">
 				<figcaption>${myQuizz.title}</figcaption>
-			</div>
+			</section>
 		`
 		enviarQuizz();
 
@@ -349,14 +349,14 @@ function renderizarQuizzAtual() {
 
 	for (let i = 0; i < quizzAtual.questions.length; i++) {
 		Quizz2.innerHTML += `
-			<div class="questoesAqui${i + 1} questao">
+			<section class="questoesAqui${i + 1} questao">
 				<article class="title_quest">
 					<h3>${quizzAtual.questions[i].title}</h3>
 				</article>
 				<section class="options">
 
 				</section>
-			</div>
+			</section>
 		`
 		const Quizz4 = document.querySelector(`.questoesAqui${i + 1}.questao section`);
 		for (let k = 0; k < quizzAtual.questions[i].answers.length; k++) {
@@ -373,17 +373,17 @@ function renderizarQuizzAtual() {
 
 	for (let j = 0; j < quizzAtual.levels.length; j++) {
 		Quizz3.innerHTML += `
-		<div class="resultados hidden">
+		<section class="resultados">
 			<article class="title_result">
 				<h3>${quizzAtual.levels[j].title}</h3>
 			</article>
 			<article class="result">
 				<figure class="result_nivel">
-					<img class="image_quest" src="${quizzAtual.levels[j].image}" alt="">
+					<img class="image_result" src="${quizzAtual.levels[j].image}" alt="">
 					<figcaption class="result_text">${quizzAtual.levels[j].text}</figcaption>
 				</figure>
 			</article>
-		</div>
+		</section>
 		`
 	}
 
