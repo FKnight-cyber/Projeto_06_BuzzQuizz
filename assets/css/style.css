@@ -2,7 +2,6 @@ body{
     position: relative;
     width: 100vw;
     height: 100vh;
-    margin: 0 auto;
     font-family: 'Roboto', sans-serif;
     background-color: #FAFAFA;
 }
@@ -79,6 +78,8 @@ h5{
     align-items: center;
     text-align: center;
     color: #ffffff;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 .head:hover{
     cursor:default;
@@ -188,7 +189,10 @@ h3{
     max-height: 200px;
 }
 .titleOptionQuest{
-    margin-left: 10px;
+    margin-right: 20px;
+    height: 50px;
+    overflow: auto;
+    margin-left: 20px;
 }
 .image_quest{
     height: 150px;
@@ -200,21 +204,27 @@ h3{
     border-radius: 3px;
 }
 .image_result{
-    height: 240px;
+    height: 260px;
     width: 100%;
     margin-left: 10px;
-    max-height: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 260px;
     min-width: 100px;
     max-width: 350px;
     border-radius: 3px;
 }
 .result_text{
-    margin-left: 10PX;
-    margin-right: 10px;
+    margin-left: 15PX;
+    margin-right: 20px;
     font-weight: 700;
     font-size: 19px;
     line-height: 25px;
     color: #484848;
+    overflow: auto;
+    height: 100px;
+    width: 60%;
 }
 
 .options{
@@ -282,7 +292,6 @@ h3{
 }
 .meus{
     margin-right: 2%;
-    margin-top: 50px;
     position: relative;
     left: 0px;
     top: 0px;
@@ -383,6 +392,43 @@ h2{
     .pagequizz_3 {
         width: 100%;
     }
+    .meus{
+        justify-content: center;
+    }
+    .tumb_quizzfinal{
+        animation: flipInX 1 normal;
+        animation-duration: 1s;
+        position: relative;
+        margin-top: 50px;
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 300px;
+        height: 266px;
+        display: flex;
+    }
+}
+.pagequizz_3{
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    align-items: center;
+    justify-content: center;
+}
+.newinputs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.inputs_3{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 42px;
+    background-color: #EC362D;
+}
+h4{
+    margin-top: 10px;
 }
 .mylistquizz_title > ion-icon{
     margin-left: 20px;
@@ -510,10 +556,28 @@ h2{
     width: 280px;
     height: 190px;
 }
+.tumb_quizzfinal > img{
+    background: linear-gradient(180deg, rgba(255, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%);
+    border-radius: 5px;
+    width: 300px;
+    height: 190px;
+}
 .tumb_quizz > figcaption{
     position: absolute;
     left: 12px;
     bottom: 14px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+}
+.tumb_quizzfinal > figcaption{
+    position: absolute;
+    left: 12px;
+    bottom: 90px;
     font-style: normal;
     font-weight: 400;
     font-size: 19px;
@@ -527,12 +591,12 @@ h2{
     border-radius: 12px;
     width: 100%;
     height: 0 auto;
-    background-color: #FFFFFF;
+    background-color: #EC362D;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
 .inputs_2{
     background-color: red;
-    border-radius: 12px;
+    border-radius: 42px;
 }
 .testando{
     background: rgb(210,0,0);
@@ -583,29 +647,57 @@ input{
     width: 80%;
     margin-bottom: 30px ;
     margin-left: 10% ;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
     margin-right: 10% ;
 }
+.
 .imagem_final{
-    width: 100%;
+    width: 520px;
 }
 .inputform{
     width: 300px;
     padding: 20px;
     font-style: normal;
     font-weight: 500;
-    margin: 0 auto;
     font-size: 18px;
     line-height: 21px;
-    display: flex;
     align-items: center;
     text-align: center;
     color: #FFF5F4;
     margin-top: 40px;
     background-color: #EC362D;
     border-radius: 15px;
-    text-align: end;
+    justify-content: center;
 }
-
+.inputformfinal{
+    justify-content: center;
+    width: 300px;
+    padding: 20px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    align-items: center;
+    text-align: center;
+    color: #FFF5F4;
+    margin-top: 40px;
+    background-color: #EC362D;
+    border-radius: 15px;
+    text-align: center;
+}
+.tumb_quizzfinal{
+    animation: flipInX 1 normal;
+    animation-duration: 1s;
+    position: relative;
+    margin-top: 50px;
+    margin-left: 15px;
+    height: 266px;
+    display: flex;
+}
 .hidden{
     display: none !important;
 }
@@ -620,6 +712,9 @@ input{
 
 .content.selecionado .testando2,.testando3{
     display: table !important;
+}
+.content{
+    width: 80%;
 }
 
 figure:hover , h1:hover ,button:hover , ion-icon:hover{
