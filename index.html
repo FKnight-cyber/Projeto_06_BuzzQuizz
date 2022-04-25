@@ -42,10 +42,14 @@
             <section class="pagequizz_1 hidden">
                 <h5 class="title_input">Comece pelo começo</h5>
                 <article class="inputs_1">
-                    <input class="title" type="text" name="" id="" placeholder="Título do seu Quizz" onkeyup="toLimit(this) ">
+                    <input class="title" type="text" name="" id="" placeholder="Título do seu Quizz" onkeyup="toLimit(this)">
+                    <h6 class="hidden">O título do seu Quizz deve ter pelo menos 20 letras</h6>
                     <input class="quizzImgURL" type="url" name="" id="" placeholder="URL da imagem do seu Quizz">
+                    <h6 class="hidden">O valor informado não é uma URL válida</h6>
                     <input class="qtdPerguntas" type="number" name="" id="" placeholder="Quantidade de perguntas do quizz">
+                    <h6 class="hidden">O quizz deve ter no mínimo 3 perguntas</h6>
                     <input class="qtdNivel" type="number" name="" id="" placeholder="Quantidade de níveis do quizz">
+                    <h6 class="hidden">O quizz deve ter no mínimo 2 níveis</h6>
                 </article>
                 <button onclick="enviarInfBasicas()" class="inputform">Prosseguir pra criar perguntas</button>
             </section>

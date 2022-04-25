@@ -100,7 +100,7 @@ function enviarInfBasicas() {
 	const qtdPerguntas = document.querySelector(".qtdPerguntas").value;
 
 	if (title.length < 20 || qtdPerguntas < 3 || qtdNiveis < 2 || !isImage(image)) {
-		alert("Preencha os dados corretamente");
+		validarInfBasicas(title,qtdNiveis,image,qtdPerguntas);
 	} else {
 		totalDePerguntas = qtdPerguntas;
 		totalDeNiveis = qtdNiveis
@@ -163,6 +163,10 @@ function enviarInfBasicas() {
 			`
 		}
 	}
+}
+
+function validarPerguntas(){
+	
 }
 
 function criarPerguntas() {
@@ -549,4 +553,27 @@ function embaralharArray(arr) {
 		[arr[i], arr[j]] = [arr[j], arr[i]];
 	}
 	return arr;
+}
+
+function validarInfBasicas(title,qtdNiveis,image,qtdPerguntas){
+	const mensagensDeValidacao = document.querySelectorAll("h6");
+	if (title.length < 20){
+		mensagensDeValidacao[0].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[0].classList.add("hidden");
+	}
+	if(qtdPerguntas < 3){
+		mensagensDeValidacao[2].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[2].classList.add("hidden");
+	}
+	if(qtdNiveis < 2){
+		mensagensDeValidacao[3].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[3].classList.add("hidden");
+	}if(!isImage(image)) {
+		mensagensDeValidacao[1].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[1].classList.add("hidden");
+	}
 }
