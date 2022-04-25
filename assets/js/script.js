@@ -106,7 +106,7 @@ function enviarInfBasicas() {
 		totalDeNiveis = qtdNiveis
 		document.querySelector(".pagequizz_1").classList.toggle("hidden");
 		document.querySelector(".pagequizz_2").classList.toggle("hidden");
-
+		window.scrollTo(0, document.body.scrollTop);
 		myQuizz.title = title;
 		myQuizz.image = image;
 
@@ -239,6 +239,7 @@ function criarPerguntas() {
 		myQuizz['questions'] = arr;
 		document.querySelector(".pagequizz_2").classList.toggle("hidden");
 		document.querySelector(".pagequizz_3").classList.toggle("hidden");
+		window.scrollTo(0, document.body.scrollTop);
 	}
 }
 
@@ -279,13 +280,13 @@ function criarNiveis() {
 
 		document.querySelector(".imagem_final").innerHTML = `
 			<section>
-				<h5>Seu quizz está pronto!</h5>
+				<h5 class="title_input">Seu quizz está pronto!</h5>
 				<img src="${myQuizz.image}" alt="">
 				<figcaption>${myQuizz.title}</figcaption>
 			</section>
 		`
 		enviarQuizz();
-
+		window.scrollTo(0, document.body.scrollTop);
 		document.querySelector(".pagequizz_3").classList.toggle("hidden");
 		document.querySelector(".pagequizz_4").classList.toggle("hidden");
 	}
@@ -397,6 +398,8 @@ function renderizarQuizzAtual() {
 					<figcaption class="result_text">${quizzAtual.levels[j].text}</figcaption>
 				</figure>
 			</article>
+			<button onclick="reiniciarQuizz()" class="reloadquizz_button">Reiniciar Quizz</button>
+			<button onclick="returnHomeTodos()" class="homeback_button">Voltar pra Home</button>
 		</section>
 		`
 	}
@@ -513,6 +516,7 @@ function calcularAcertos(){
 					</figure>
 				</article>
 			</div>
+			
 			`	
 		}
 	}
