@@ -8,13 +8,13 @@ let meusQuizzes = [];
 let quizzAtual = [];
 let myQuizz = {};
 let ID_DO_QUIZZ;
-let atualTemp;
+let acertos = 0;
+let questoesRespondidas = 0;
 let meusQuizzesID = [];
 const idSerializado = localStorage.getItem("id");
 
 checkMyQuizzes();
 obterQuizzes();
-
 
 function obterQuizzes() {
 	axios.get(`${API}/quizzes`).then(armazenarQuizzes);
@@ -100,7 +100,7 @@ function enviarInfBasicas() {
 	const qtdPerguntas = document.querySelector(".qtdPerguntas").value;
 
 	if (title.length < 20 || qtdPerguntas < 3 || qtdNiveis < 2 || !isImage(image)) {
-		alert("Preencha os dados corretamente");
+		validarInfBasicas(title,qtdNiveis,image,qtdPerguntas);
 	} else {
 		totalDePerguntas = qtdPerguntas;
 		totalDeNiveis = qtdNiveis
@@ -163,6 +163,10 @@ function enviarInfBasicas() {
 			`
 		}
 	}
+}
+
+function validarPerguntas(){
+	
 }
 
 function criarPerguntas() {
@@ -247,7 +251,6 @@ function criarNiveis() {
 	}
 
 	if (conditionsNotMet || !hasZero) {
-		console.log(hasZero)
 		alert("Preencha os dados corretamente");
 	} else {
 		for (let k = 0; k < totalDeNiveis; k++) {
@@ -338,8 +341,8 @@ function renderizarQuizzAtual() {
         <section class="boby_questresult">
 
         </section>
-		<button class="reloadquizz_button">Reiniciar Quizz</button>
-		<button onclick="returnHomeTodos()" class="homeback_button">Voltar pra Home</button>
+		<button onclick="reiniciarQuizz()" class="reloadquizz_button hidden">Reiniciar Quizz</button>
+		<button onclick="returnHomeTodos()" class="homeback_button hidden">Voltar pra Home</button>
 	`
 	const Quizz2 = document.querySelector(".boby_quest");
 	const Quizz3 = document.querySelector(".boby_questresult");
@@ -370,7 +373,7 @@ function renderizarQuizzAtual() {
 			`
 		}
 	}
-
+	
 	for (let j = 0; j < quizzAtual.levels.length; j++) {
 		Quizz3.innerHTML += `
 		<section class="resultados">
@@ -410,7 +413,6 @@ function answerQuizz(elemento) {
 	const todasPerguntas = document.querySelectorAll(".questao");
 	const myAnswer = elemento.querySelector("figcaption").innerHTML;
 	const correctAnswers = [];
-	let k;
 	let correctAnswer;
 
 	for (let i = 0; i < quizzAtual.questions.length; i++) {
@@ -426,33 +428,86 @@ function answerQuizz(elemento) {
 			correctAnswer = correctAnswers[i];
 		}
 	}
-	
+
 	if(myAnswer === correctAnswer) {
+		elemento.onclick = " ";
 		elemento.classList.add("certa");
+		acertos++;
 		for(let i = 0; i < elemento.parentNode.children.length;i++){
+			elemento.parentNode.children[i].onclick = " ";
 			if(elemento.parentNode.children[i] !== elemento){
 				elemento.parentNode.children[i].classList.add("opacidade")
 				if(elemento.parentNode.children[i].querySelector("figcaption").innerHTML !== correctAnswer){
-					elemento.parentNode.children[i].classList.add("errada")
+					elemento.parentNode.children[i].classList.add("errada");
 				}else{
-					elemento.parentNode.children[i].classList.add("certa")
+					elemento.parentNode.children[i].classList.add("certa");
 				}
 			}
 		}
 	}else{
 		elemento.classList.add("errada");
 		for(let i = 0; i < elemento.parentNode.children.length;i++){
+			elemento.parentNode.children[i].onclick = " ";
 			if(elemento.parentNode.children[i] !== elemento){
-				elemento.parentNode.children[i].classList.add("opacidade")
+				elemento.parentNode.children[i].classList.add("opacidade");
 				if(elemento.parentNode.children[i].querySelector("figcaption").innerHTML !== correctAnswer){
-					elemento.parentNode.children[i].classList.add("errada")
+					elemento.parentNode.children[i].classList.add("errada");
 				}else{
-					elemento.parentNode.children[i].classList.add("certa")
+					elemento.parentNode.children[i].classList.add("certa");
 				}
 			}
 		}
 	}
+	
+	questoesRespondidas++;
+
+	if(questoesRespondidas === quizzAtual.questions.length){
+		questoesRespondidas = 0;
+		calcularAcertos();
+	}
 }
+
+function calcularAcertos(){
+	let k = 0;
+	const Quizz = document.querySelector(".boby_questresult");
+	const totalAcertos = Math.trunc((acertos/quizzAtual.questions.length)*100);
+
+	for(let j = 0;j < quizzAtual.levels.length;j++){
+		if(totalAcertos=== 0 && quizzAtual.levels[j].minValue === 0){
+			Quizz.innerHTML += `
+			<div class="resultados">
+				<article class="title_result">
+					<h3>${quizzAtual.levels[j].title}</h3>
+				</article>
+				<article class="result">
+					<figure class="result_nivel">
+						<img class="image_quest" src="${quizzAtual.levels[j].image}" alt="">
+						<figcaption class="result_text">${quizzAtual.levels[j].text}</figcaption>
+					</figure>
+				</article>
+			</div>
+			`
+		}
+		if(totalAcertos!== 0 && quizzAtual.levels[j].minValue > 0){
+		Quizz.innerHTML += `
+			<div class="resultados">
+				<article class="title_result">
+					<h3>${quizzAtual.levels[j].title}</h3>
+				</article>
+				<article class="result">
+					<figure class="result_nivel">
+						<img class="image_quest" src="${quizzAtual.levels[j].image}" alt="">
+						<figcaption class="result_text">${quizzAtual.levels[j].text}</figcaption>
+					</figure>
+				</article>
+			</div>
+			`	
+		}
+	}
+	document.querySelector(".reloadquizz_button").classList.toggle("hidden");
+	document.querySelector(".homeback_button").classList.toggle("hidden");
+}
+
 
 function select(elemento) {
 	const perguntaSelecionada = document.querySelector(".content.selecionado");
@@ -476,6 +531,14 @@ function returnHome() {
 	document.querySelector(".screen1_listquizz").classList.toggle("hidden");
 }
 
+function reiniciarQuizz(){
+	const Quizz = document.querySelector(".boby_questresult");
+	Quizz.innerHTML=""
+	document.querySelector(".reloadquizz_button").classList.toggle("hidden");
+	document.querySelector(".homeback_button").classList.toggle("hidden");
+	quizzRefreshing();
+}
+
 function quizzRefreshing() {
 	window.scrollTo(0, document.body.scrollTop);
 }
@@ -490,4 +553,27 @@ function embaralharArray(arr) {
 		[arr[i], arr[j]] = [arr[j], arr[i]];
 	}
 	return arr;
+}
+
+function validarInfBasicas(title,qtdNiveis,image,qtdPerguntas){
+	const mensagensDeValidacao = document.querySelectorAll("h6");
+	if (title.length < 20){
+		mensagensDeValidacao[0].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[0].classList.add("hidden");
+	}
+	if(qtdPerguntas < 3){
+		mensagensDeValidacao[2].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[2].classList.add("hidden");
+	}
+	if(qtdNiveis < 2){
+		mensagensDeValidacao[3].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[3].classList.add("hidden");
+	}if(!isImage(image)) {
+		mensagensDeValidacao[1].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[1].classList.add("hidden");
+	}
 }
