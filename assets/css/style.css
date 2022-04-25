@@ -643,7 +643,7 @@ figure:hover , h1:hover ,button:hover , ion-icon:hover{
     opacity: 0.3;
 }
 
-h6,h7{
+h6,h7,h8{
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -654,5 +654,9 @@ h6,h7{
 
 h7{
     color: #000000;
+}
+
+input.wrong{
+    background-color: #FFE9E9;
 }
 
