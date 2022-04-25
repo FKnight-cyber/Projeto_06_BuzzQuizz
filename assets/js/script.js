@@ -156,7 +156,7 @@ function enviarInfBasicas() {
 			<section class="newinputs">
                 <article class="content">
                     <div class="testando">
-                        <h4>Nivel ${i + 1}</h4>
+                        <h4 class="nivel_name">Nivel ${i + 1}</h4>
                         <ion-icon onclick="select(this)" name="brush-outline"></ion-icon>
                     </div>
                     <div class="testando3">
@@ -279,11 +279,10 @@ function criarNiveis() {
 		myQuizz['levels'] = arr;
 
 		document.querySelector(".imagem_final").innerHTML = `
-			<section>
-				<h5 class="title_input">Seu quizz está pronto!</h5>
+			<figure class="tumb_quizz animate__flipInX">
 				<img src="${myQuizz.image}" alt="">
 				<figcaption>${myQuizz.title}</figcaption>
-			</section>
+			</figure>
 		`
 		enviarQuizz();
 		window.scrollTo(0, document.body.scrollTop);
