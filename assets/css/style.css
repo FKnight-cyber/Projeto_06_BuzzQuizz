@@ -94,6 +94,7 @@ h5{
     border-radius: 12px;
 }
 .boby_questresult{
+    width:100%;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -193,28 +194,6 @@ h3{
     min-height: 100px;
     max-height: 1000px;
 }
-@media only screen and (max-width: 68.75rem){
-    .questao{
-        width: 100%;
-        margin-right: 1%;
-        margin-left: 1%;
-    }
-    .result_nivel{
-        width: 100%;
-        display: inline-flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        align-content: space-around;
-        justify-content: space-around;
-        align-items: flex-start;
-    }
-    .result_text{
-        margin-top: 5px;
-    }
-    .pagequizz_3 {
-        width: 100%;
-    }
-}
 .option{
     width: 100%;
     max-height: 200px;
@@ -225,7 +204,6 @@ h3{
 .image_quest{
     height: 150px;
     width: 90%;
-    margin-left: 10px;
     max-height:150px;
     min-width: 100px;
     max-width: 350px;
@@ -314,13 +292,13 @@ h3{
     position: relative;
 }
 .meus{
-    margin-left: -10px;
+    margin-right: 2%;
     margin-top: 50px;
     position: relative;
     left: 0px;
     top: 0px;
     border-radius: 12px;
-    width: 100%;
+    width: 98%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -383,13 +361,36 @@ h2{
 @media only screen and (max-width: 68.75rem){
     .resultados{
         height: 500px;
-        width: 100%;
+        width: 98%;
         margin-right: 1%;
         margin-left: 1%;
     }
     .screen3_pagequizz{
         margin-left: 1%;
         margin-right: 1%;
+    }
+    .image_result{
+        margin-left: 3%;
+    }
+    .questao{
+        width: 98%;
+        margin-right: 1%;
+        margin-left: 1%;
+    }
+    .result_nivel{
+        width: 100%;
+        display: inline-flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: space-around;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+    .result_text{
+        margin-top: 5px;
+    }
+    .pagequizz_3 {
+        width: 100%;
     }
 }
 .mylistquizz_title > ion-icon{
@@ -477,7 +478,7 @@ h2{
     flex-wrap: wrap;
 }
 .tumb_quizz{
-    animation: flipInX;
+    animation: flipInX 1 normal;
     animation-duration: 1s;
     position: relative;
     margin-top: 50px;
@@ -494,6 +495,10 @@ h2{
     width: 280px;
     height: 190px;
     display: flex;
+}
+.img_meus{
+    width: 280px;
+    height: 190px;
 }
 .tumb_meusquizz > figcaption{
     position: absolute;

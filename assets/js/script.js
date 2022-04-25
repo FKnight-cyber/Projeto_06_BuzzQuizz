@@ -54,7 +54,7 @@ function renderizarQuizzes() {
 		ulQuizz.innerHTML += `
         <figure onclick="accessQuizz(this)" class="tumb_quizz animate__flipInX">
 			<icon class="getID hidden">${quizzes[i].id}</icon>
-        	<img src="${quizzes[i].image}" alt="">
+        	<img class="" src="${quizzes[i].image}" alt="">
         	<figcaption>${quizzes[i].title}</figcaption>
     	</figure>
         `
@@ -66,7 +66,7 @@ function renderizarQuizzes() {
 		ulMeusQuizzes.innerHTML += `
         <figure onclick="accessQuizz(this)" class="tumb_meusquizz">
 			<icon class="getID hidden">${meusQuizzes[j].id}</icon>
-        	<img src="${meusQuizzes[j].image}" alt="">
+        	<img class="img_meus" src="${meusQuizzes[j].image}" alt="">
         	<figcaption>${meusQuizzes[j].title}</figcaption>
     	</figure>
         `
@@ -336,13 +336,11 @@ function renderizarQuizzAtual() {
 			</figure>
 		</article>
 		<section class="boby_quest">
-			 
         </section>
         <section class="boby_questresult">
-
         </section>
-		<button onclick="reiniciarQuizz()" class="reloadquizz_button hidden">Reiniciar Quizz</button>
-		<button onclick="returnHomeTodos()" class="homeback_button hidden">Voltar pra Home</button>
+		<button onclick="reiniciarQuizz()" class="reloadquizz_button">Reiniciar Quizz</button>
+		<button onclick="returnHomeTodos()" class="homeback_button">Voltar pra Home</button>
 	`
 	const Quizz2 = document.querySelector(".boby_quest");
 	const Quizz3 = document.querySelector(".boby_questresult");
