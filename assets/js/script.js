@@ -368,7 +368,6 @@ function renderizarQuizzAtual() {
 					<h3>${quizzAtual.questions[i].title}</h3>
 				</article>
 				<section class="options">
-
 				</section>
 			</section>
 		`
@@ -397,8 +396,6 @@ function renderizarQuizzAtual() {
 					<figcaption class="result_text">${quizzAtual.levels[j].text}</figcaption>
 				</figure>
 			</article>
-			<button onclick="reiniciarQuizz()" class="reloadquizz_button">Reiniciar Quizz</button>
-			<button onclick="returnHomeTodos()" class="homeback_button">Voltar pra Home</button>
 		</section>
 		`
 	}
@@ -509,8 +506,8 @@ function calcularAcertos(){
 		Resultado[k].classList.remove("hidden");
 	}
 
-	document.querySelector(".reloadquizz_button").classList.toggle("hidden");
-	document.querySelector(".homeback_button").classList.toggle("hidden");
+	document.querySelector(".reloadquizz_button").classList.remove("hidden");
+	document.querySelector(".homeback_button").classList.remove("hidden");
 }
 
 
