@@ -484,42 +484,32 @@ function answerQuizz(elemento) {
 
 function calcularAcertos(){
 	let k = 0;
-	const Quizz = document.querySelector(".boby_questresult");
+	const Resultado = document.querySelectorAll(".resultados.hidden");
 	const totalAcertos = Math.trunc((acertos/quizzAtual.questions.length)*100);
 
 	for(let j = 0;j < quizzAtual.levels.length;j++){
-		if(totalAcertos=== 0 && quizzAtual.levels[j].minValue === 0){
-			Quizz.innerHTML += `
-			<div class="resultados">
-				<article class="title_result">
-					<h3>${quizzAtual.levels[j].title}</h3>
-				</article>
-				<article class="result">
-					<figure class="result_nivel">
-						<img class="image_quest" src="${quizzAtual.levels[j].image}" alt="">
-						<figcaption class="result_text">${quizzAtual.levels[j].text}</figcaption>
-					</figure>
-				</article>
-			</div>
-			`
-		}
-		if(totalAcertos!== 0 && quizzAtual.levels[j].minValue > 0){
-		Quizz.innerHTML += `
-			<div class="resultados">
-				<article class="title_result">
-					<h3>${quizzAtual.levels[j].title}</h3>
-				</article>
-				<article class="result">
-					<figure class="result_nivel">
-						<img class="image_quest" src="${quizzAtual.levels[j].image}" alt="">
-						<figcaption class="result_text">${quizzAtual.levels[j].text}</figcaption>
-					</figure>
-				</article>
-			</div>
-			
-			`	
+		if(totalAcertos === 0 && Number(quizzAtual.levels[j].minValue) === 0){
+			Resultado[j].classList.remove("hidden");
+			break;
+		}else if(totalAcertos!== 0 && Number(quizzAtual.levels[j].minValue) === totalAcertos){
+			Resultado[j].classList.remove("hidden");
+			break;
 		}
 	}
+
+	for(let j = 0;j < quizzAtual.levels.length;j++){
+		const Resultado2 = document.querySelectorAll(".resultados.hidden");
+		if(Resultado2.length === quizzAtual.levels.length){
+			if(totalAcertos > Number(quizzAtual.levels[j].minValue)){
+				k = j;
+			}
+		}
+	}
+
+	if(k !== 0){
+		Resultado[k].classList.remove("hidden");
+	}
+
 	document.querySelector(".reloadquizz_button").classList.toggle("hidden");
 	document.querySelector(".homeback_button").classList.toggle("hidden");
 }
@@ -548,10 +538,23 @@ function returnHome() {
 }
 
 function reiniciarQuizz(){
-	const Quizz = document.querySelector(".boby_questresult");
-	Quizz.innerHTML=""
-	document.querySelector(".reloadquizz_button").classList.toggle("hidden");
-	document.querySelector(".homeback_button").classList.toggle("hidden");
+	const certa  = document.querySelectorAll(".certa");
+	const errada = document.querySelectorAll(".errada");
+	
+	for(let i = 0; i < certa.length;i++){
+		certa[i].onclick = function () {answerQuizz(this);};
+		certa[i].classList.remove("opacidade");
+		certa[i].classList.remove("certa");
+	}
+	for(let j = 0; j < errada.length;j++){
+		errada[j].onclick = function () {answerQuizz(this);};
+		errada[j].classList.remove("opacidade")
+		errada[j].classList.remove("errada")
+	}
+	
+	document.querySelector(".boby_questresult").classList.add("hidden");
+	document.querySelector(".reloadquizz_button").classList.add("hidden");
+	document.querySelector(".homeback_button").classList.add("hidden");
 	quizzRefreshing();
 }
 
