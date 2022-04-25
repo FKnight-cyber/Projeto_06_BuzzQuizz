@@ -159,12 +159,16 @@ function enviarInfBasicas() {
                         <h4>Nivel ${i + 1}</h4>
                         <ion-icon onclick="select(this)" name="brush-outline"></ion-icon>
                     </div>
-                    <div class="testando2">
+                    <div class="testando3">
                         <h4>Nível ${i + 1}</h4>
                         <input class="tituloNivel" type="text" name="" id="" placeholder="Título do nível">
+						<h8 class="hidden">O título do nível deve ter pelo menos 10 letras</h8>
                         <input class="acertoPercentual" type="number" name="" id="" placeholder="% de acerto mínima">
+						<h8 class="hidden">Informe um número entre 0 e 100, um tem de ser igual a 0</h8>
                     <input class="imageNivel" type="url" name="" id="" placeholder="URL da imagem do nível">
+					<h8 class="hidden">O valor informado não é uma URL válida</h8>
                     <input class="textoNivel" class="desc_nivel" type="text" name="" id="" placeholder="Descrição do nível">
+					<h8 class="hidden">A descrição do nível deve ter pelo menos 30 letras</h8>
                     </div>
                 </article>
             </section>
@@ -251,6 +255,7 @@ function criarNiveis() {
 		if (tituloNivel[i].value.length < 10 || acertoPercentual[i].value < 0 ||
 			acertoPercentual[i].value > 100 || !isImage(imageNivel[i].value) ||
 			textoNivel[i].value.length < 30) {
+				validarNiveis(tituloNivel,acertoPercentual,imageNivel,textoNivel);
 			conditionsNotMet = true;
 		}
 		if (acertoPercentual[i].value == 0) {
@@ -259,7 +264,7 @@ function criarNiveis() {
 	}
 
 	if (conditionsNotMet || !hasZero) {
-		alert("Preencha os dados corretamente");
+		return;
 	} else {
 		for (let k = 0; k < totalDeNiveis; k++) {
 			arr.push({
@@ -321,7 +326,6 @@ function armazenarQuizzAtual(response) {
 }
 
 function renderizarQuizzAtual() {
-	console.log(quizzAtual)
 	for (let f = 0; f < quizzAtual.questions.length; f++) {
 		embaralharArray(quizzAtual.questions[f].answers)
 	}
@@ -452,6 +456,7 @@ function answerQuizz(elemento) {
 			}
 		}
 	}else{
+		elemento.onclick = " ";
 		elemento.classList.add("errada");
 		for(let i = 0; i < elemento.parentNode.children.length;i++){
 			elemento.parentNode.children[i].onclick = " ";
@@ -676,3 +681,40 @@ for(let k = 0; k < totalDePerguntas;k++){
 		}			  
 	}
 }
+
+function validarNiveis(tituloNivel, acertoPercentual, imageNivel, textoNivel){
+	const mensagensDeValidacao = document.querySelectorAll("h8");
+	const inputsDeValidacao = document.querySelectorAll(".testando3");
+
+	for(let k = 0; k < totalDeNiveis;k++){
+		if (tituloNivel[k].value.length < 10){
+			inputsDeValidacao[k].children[1].classList.add("wrong");
+			mensagensDeValidacao[4*k].classList.remove("hidden");
+		}else{
+			inputsDeValidacao[k].children[1].classList.remove("wrong");
+			mensagensDeValidacao[4*k].classList.add("hidden");
+		}
+		if(acertoPercentual[k].value < 0 || acertoPercentual[k].value > 100){
+			inputsDeValidacao[k].children[3].classList.add("wrong");
+			mensagensDeValidacao[4*k+1].classList.remove("hidden");
+		}else{
+			inputsDeValidacao[k].children[3].classList.remove("wrong");
+			mensagensDeValidacao[4*k+1].classList.add("hidden");
+		}
+		if(!isImage(imageNivel[k].value)){
+			inputsDeValidacao[k].children[5].classList.add("wrong");
+			mensagensDeValidacao[4*k+2].classList.remove("hidden");
+		}else{
+			inputsDeValidacao[k].children[5].classList.remove("wrong");
+			mensagensDeValidacao[4*k+2].classList.add("hidden");
+		}
+		if(textoNivel[k].value.length < 30){
+			inputsDeValidacao[k].children[7].classList.add("wrong");
+			mensagensDeValidacao[4*k+3].classList.remove("hidden");
+		}else{
+			inputsDeValidacao[k].children[7].classList.remove("wrong");
+			mensagensDeValidacao[4*k+3].classList.add("hidden");
+		}
+	}
+}
+			

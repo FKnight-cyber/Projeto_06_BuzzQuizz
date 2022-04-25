@@ -616,17 +616,18 @@ input{
     display: none !important;
 }
 
+.testando2,.testando3{
+    display: none !important;
+}
+
 .content.selecionado .testando{
     display: none !important;
 }
 
-.content.selecionado .testando2{
+.content.selecionado .testando2,.testando3{
     display: table !important;
 }
 
-.content .testando2{
-    display: none !important;
-}
 figure:hover , h1:hover ,button:hover , ion-icon:hover{
     cursor: pointer;
 }
@@ -657,6 +658,6 @@ h7{
 }
 
 input.wrong{
-    background-color: #FFE9E9;
+    background-color: blue;
 }
 
