@@ -68,6 +68,10 @@ function renderizarQuizzes() {
 			<icon class="getID hidden">${meusQuizzes[j].id}</icon>
         	<img class="img_meus" src="${meusQuizzes[j].image}" alt="">
         	<figcaption>${meusQuizzes[j].title}</figcaption>
+			<div class="bonus_meus">
+			<ion-icon class="bonus_ion" name="create-outline"></ion-icon>
+			<ion-icon class="bonus_ion" name="trash-outline"></ion-icon>
+			</div>
     	</figure>
         `
 	}
@@ -106,7 +110,7 @@ function enviarInfBasicas() {
 		totalDeNiveis = qtdNiveis
 		document.querySelector(".pagequizz_1").classList.toggle("hidden");
 		document.querySelector(".pagequizz_2").classList.toggle("hidden");
-		window.scrollTo(0, document.body.scrollTop);
+		quizzRefreshing()
 		myQuizz.title = title;
 		myQuizz.image = image;
 
@@ -239,7 +243,7 @@ function criarPerguntas() {
 		myQuizz['questions'] = arr;
 		document.querySelector(".pagequizz_2").classList.toggle("hidden");
 		document.querySelector(".pagequizz_3").classList.toggle("hidden");
-		window.scrollTo(0, document.body.scrollTop);
+		quizzRefreshing()
 	}
 }
 
@@ -285,7 +289,7 @@ function criarNiveis() {
 			</figure>
 		`
 		enviarQuizz();
-		window.scrollTo(0, document.body.scrollTop);
+		quizzRefreshing()
 		document.querySelector(".pagequizz_3").classList.toggle("hidden");
 		document.querySelector(".pagequizz_4").classList.toggle("hidden");
 	}
@@ -311,7 +315,7 @@ function armazenarMeuQuizz(response) {
 function accessQuizz(elemento) {
 	ID_DO_QUIZZ = elemento.querySelector(".getID").innerHTML;
 	obterQuizzEspecifico(ID_DO_QUIZZ)
-	window.scrollTo(0, document.body.scrollTop);
+	quizzRefreshing()
 }
 
 
@@ -352,8 +356,10 @@ function renderizarQuizzAtual() {
         </section>
         <section class="boby_questresult">
         </section>
-		<button onclick="reiniciarQuizz()" class="reloadquizz_button">Reiniciar Quizz</button>
-		<button onclick="returnHomeTodos()" class="homeback_button">Voltar pra Home</button>
+		<section>
+			<button onclick="reiniciarQuizz()" class="reloadquizz_button">Reiniciar Quizz</button>
+			<button onclick="returnHomeTodos()" class="homeback_button">Voltar pra Home</button>
+		</section>
 	`
 	const Quizz2 = document.querySelector(".boby_quest");
 	const Quizz3 = document.querySelector(".boby_questresult");
@@ -418,7 +424,7 @@ function accessMyQuizz() {
 
 	obterQuizzEspecifico(meusQuizzesID[meusQuizzesID.length - 1]);
 
-	window.scrollTo(0, document.body.scrollTop);
+	quizzRefreshing()
 }
 
 function answerQuizz(elemento) {
@@ -560,6 +566,7 @@ function quizzRefreshing() {
 
 function reloadWindown() {
 	window.location.reload();
+	quizzRefreshing()
 }
 
 function embaralharArray(arr) {
@@ -588,7 +595,7 @@ function validarInfBasicas(title,qtdNiveis,image,qtdPerguntas){
 		mensagensDeValidacao[2].classList.add("hidden");
 	}
 	if(qtdNiveis < 2){
-		inputsDeValidacao[6].classList.add("wrong");
+		inputsDeValidacao[6].classList.add("wrong"); 
 		mensagensDeValidacao[3].classList.remove("hidden");
 	}else{
 		inputsDeValidacao[6].classList.remove("wrong");
