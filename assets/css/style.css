@@ -153,6 +153,12 @@ h5{
     border: none;
     margin: 20px
 }
+.butoes{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
 .reloadquizz_button{
     margin-top: 30px;
     font-style: normal;
@@ -188,6 +194,13 @@ h5{
     width: 100%;
 }
 h3{
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
     margin-left: 10%;
     margin-right: 10%;
 }
@@ -213,6 +226,9 @@ h3{
     max-height: 200px;
 }
 .titleOptionQuest{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
     margin-right: 20px;
     height: 50px;
     overflow: auto;
@@ -433,6 +449,12 @@ h2{
     .tumb_meusquizz{
         margin-right: 0px;
     }
+}
+.pagequizz_2{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
 .pagequizz_3{
     display: flex;

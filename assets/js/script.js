@@ -283,7 +283,7 @@ function criarNiveis() {
 		myQuizz['levels'] = arr;
 
 		document.querySelector(".imagem_final").innerHTML = `
-			<figure class="tumb_quizz animate__flipInX">
+			<figure class="tumb_quizzfinal animate__flipInX">
 				<img src="${myQuizz.image}" alt="">
 				<figcaption>${myQuizz.title}</figcaption>
 			</figure>
@@ -356,7 +356,7 @@ function renderizarQuizzAtual() {
         </section>
         <section class="boby_questresult">
         </section>
-		<section>
+		<section class ="butoes">
 			<button onclick="reiniciarQuizz()" class="reloadquizz_button">Reiniciar Quizz</button>
 			<button onclick="returnHomeTodos()" class="homeback_button">Voltar pra Home</button>
 		</section>
@@ -423,14 +423,16 @@ function accessMyQuizz() {
 
 	quizzRefreshing()
 }
-
+function scrollQuizz(){
+	window.scroll(0,900);
+}
 function answerQuizz(elemento) {
 	const questaoAtual = elemento.parentNode.parentNode;
 	const todasPerguntas = document.querySelectorAll(".questao");
 	const myAnswer = elemento.querySelector("figcaption").innerHTML;
 	const correctAnswers = [];
 	let correctAnswer;
-
+	scrollQuizz()
 	for (let i = 0; i < quizzAtual.questions.length; i++) {
 		for (let k = 0; k < quizzAtual.questions[i].answers.length; k++) {
 			if (quizzAtual.questions[i].answers[k].isCorrectAnswer === true) {
