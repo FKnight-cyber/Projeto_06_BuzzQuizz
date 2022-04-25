@@ -139,10 +139,14 @@ function enviarInfBasicas() {
 					<h7 class="hidden">O valor informado não é uma URL válida</h7>
             
                     <input class="respostaIncorreta2" type="text" placeholder="Resposta incorreta 2">
+					<h7 class="hidden">Você deve informar a resposta incorreta</h7>
                     <input class="imagemErrada2" type="text" placeholder="URL da imagem 2">
+					<h7 class="hidden">O valor informado não é uma URL válida</h7>
                             
                     <input class="respostaIncorreta3" type="text" placeholder="Resposta incorreta 3">
+					<h7 class="hidden">Você deve informar a resposta incorreta</h7>
                     <input class="imagemErrada3" type="text" placeholder="URL da imagem 3">
+					<h7 class="hidden">O valor informado não é uma URL válida</h7>
                 </div>
             	</article>  
             </section>
@@ -168,48 +172,6 @@ function enviarInfBasicas() {
             </section>
 			`
 		}
-	}
-}
-
-function validarPerguntas(textoPergunta,respostaCorreta,corPergunta,imageC
-						,respostaIncorreta1,imageE1,respostaIncorreta2,imageE2
-						,respostaIncorreta3,imageE3){
-
-	const mensagensDeValidacao = document.querySelectorAll("h7");
-	
-	for(let k = 0; k < totalDePerguntas;k++){
-		if (textoPergunta[k].value.length < 20){
-			mensagensDeValidacao[6*k].classList.remove("hidden");
-		}else{
-			mensagensDeValidacao[6*k].classList.add("hidden");
-		}
-		if(!isColor(corPergunta[k].value)){
-			mensagensDeValidacao[6*k + 1].classList.remove("hidden");
-		}else{
-			mensagensDeValidacao[6*k + 1].classList.add("hidden");
-		}
-		if(respostaCorreta[k].value === ''){
-			mensagensDeValidacao[6*k + 2].classList.remove("hidden");
-		}else{
-			mensagensDeValidacao[6*k + 2].classList.add("hidden");
-		}
-		if(!isImage(imageC[k].value)){
-			mensagensDeValidacao[6*k + 3].classList.remove("hidden");
-		}else{
-			mensagensDeValidacao[6*k + 3].classList.add("hidden");
-		}
-		if(respostaIncorreta1[k].value === '' 
-			&& respostaIncorreta2[k].value === '' 
-			&& respostaIncorreta3[k].value === ''){
-				mensagensDeValidacao[6*k + 4].classList.remove("hidden");
-		}else{
-			mensagensDeValidacao[6*k + 4].classList.add("hidden");
-		}
-		if(!isImage(imageE1[k].value)){
-			mensagensDeValidacao[6*k + 5].classList.remove("hidden");
-		}else{
-			mensagensDeValidacao[6*k + 5].classList.add("hidden");
-		}			  
 	}
 }
 
@@ -423,7 +385,7 @@ function renderizarQuizzAtual() {
 	
 	for (let j = 0; j < quizzAtual.levels.length; j++) {
 		Quizz3.innerHTML += `
-		<section class="resultados">
+		<section class="resultados hidden">
 			<article class="title_result">
 				<h3>${quizzAtual.levels[j].title}</h3>
 			</article>
@@ -622,5 +584,67 @@ function validarInfBasicas(title,qtdNiveis,image,qtdPerguntas){
 		mensagensDeValidacao[1].classList.remove("hidden");
 	}else{
 		mensagensDeValidacao[1].classList.add("hidden");
+	}
+}
+
+function validarPerguntas(textoPergunta,respostaCorreta,corPergunta,imageC
+	,respostaIncorreta1,imageE1,respostaIncorreta2,imageE2
+	,respostaIncorreta3,imageE3){
+
+const mensagensDeValidacao = document.querySelectorAll("h7");
+
+for(let k = 0; k < totalDePerguntas;k++){
+	if (textoPergunta[k].value.length < 20){
+		mensagensDeValidacao[10*k].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[10*k].classList.add("hidden");
+		}
+	if(!isColor(corPergunta[k].value)){
+		mensagensDeValidacao[10*k + 1].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[10*k + 1].classList.add("hidden");
+		}
+	if(respostaCorreta[k].value === ''){
+		mensagensDeValidacao[10*k + 2].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[10*k + 2].classList.add("hidden");
+		}
+	if(!isImage(imageC[k].value)){
+		mensagensDeValidacao[10*k + 3].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[10*k + 3].classList.add("hidden");
+		}
+	if(respostaIncorreta1[k].value === '' 
+		&& respostaIncorreta2[k].value === '' 
+		&& respostaIncorreta3[k].value === ''){
+			mensagensDeValidacao[10*k + 4].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[10*k + 4].classList.add("hidden");
+		}
+	if(!isImage(imageE1[k].value)){
+		mensagensDeValidacao[10*k + 5].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[10*k + 5].classList.add("hidden");
+		}
+	if(respostaIncorreta2[k].value === '' && imageE2[k].value !== ''){
+		mensagensDeValidacao[10*k + 6].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[10*k + 6].classList.add("hidden");
+		}
+	if(!isImage(imageE2[k].value) && respostaIncorreta2[k].value !== ''){
+		mensagensDeValidacao[10*k + 7].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[10*k + 7].classList.add("hidden");
+		}
+	if(respostaIncorreta3[k].value === '' && imageE3[k].value !== ''){
+		mensagensDeValidacao[10*k + 8].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[10*k + 8].classList.add("hidden");
+		}
+	if(!isImage(imageE3[k].value) && respostaIncorreta3[k].value !== ''){
+		mensagensDeValidacao[10*k + 9].classList.remove("hidden");
+	}else{
+		mensagensDeValidacao[10*k + 9].classList.add("hidden");
+		}			  
 	}
 }
