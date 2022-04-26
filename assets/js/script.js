@@ -496,6 +496,7 @@ function answerQuizz(elemento) {
 	if(questoesRespondidas === quizzAtual.questions.length){
 		questoesRespondidas = 0;
 		calcularAcertos();
+		document.querySelector(".boby_questresult").classList.remove("hidden");
 	}
 	setTimeout(function(){
 		for(let i = 0;i < todasPerguntas.length;i++){
@@ -577,11 +578,8 @@ function reiniciarQuizz(){
 		errada[j].classList.remove("opacidade")
 		errada[j].classList.remove("errada")
 	}
-	
-	document.querySelector(".resultados").classList.toggle("hidden");
-	document.querySelector(".reloadquizz_button").classList.add("hidden");
-	document.querySelector(".homeback_button").classList.add("hidden");
 	quizzRefreshing();
+	document.querySelector(".boby_questresult").classList.add("hidden").innerHTML= ``;
 }
 
 function quizzRefreshing() {
