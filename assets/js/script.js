@@ -496,6 +496,8 @@ function answerQuizz(elemento) {
 		for(let i = 0;i < todasPerguntas.length;i++){
 			if(questaoAtual === todasPerguntas[i]){
 				todasPerguntas[i+1].scrollIntoView();
+			}else{
+				document.querySelector(".resultados").scrollIntoView();
 			}
 		}
 	},2000)
