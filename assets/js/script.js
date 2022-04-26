@@ -13,8 +13,9 @@ let questoesRespondidas = 0;
 let meusQuizzesID = [];
 const idSerializado = localStorage.getItem("id");
 let load = document.querySelector(".load").classList.add("hidden")
-checkMyQuizzes();
 obterQuizzes();
+
+console.log(idSerializado)
 
 function obterQuizzes() {
 	axios.get(`${API}/quizzes`).then(armazenarQuizzes);
@@ -27,10 +28,14 @@ function armazenarQuizzes(response) {
 			if (meusQuizzesID[i] === geral[k].id) {
 				meusQuizzes.push(geral[k]);
 			} else {
+				meusQuizzesID.pop(geral[k].id);
 				quizzes.push(geral[k]);
 			}
 		}
 	}
+	const myQuizzesIDSerializado = JSON.stringify(meusQuizzesID);
+	localStorage.setItem("id", myQuizzesIDSerializado);
+	checkMyQuizzes();
 	renderizarQuizzes();
 }
 
@@ -311,7 +316,6 @@ function deuErro() {
 }
 
 function armazenarMeuQuizz(response) {
-
 	meusQuizzesID.push(Number(response.data.id));
 	const myQuizzesIDSerializado = JSON.stringify(meusQuizzesID);
 	localStorage.setItem("id", myQuizzesIDSerializado);
@@ -496,6 +500,8 @@ function answerQuizz(elemento) {
 		for(let i = 0;i < todasPerguntas.length;i++){
 			if(questaoAtual === todasPerguntas[i]){
 				todasPerguntas[i+1].scrollIntoView();
+			}else{
+				document.querySelector(".resultados").scrollIntoView();
 			}
 		}
 	},2000)
