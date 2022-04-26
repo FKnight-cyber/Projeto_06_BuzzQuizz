@@ -341,7 +341,7 @@ function armazenarMeuQuizz(response) {
 function accessQuizz(elemento) {
 	ID_DO_QUIZZ = elemento.querySelector(".getID").innerHTML;
 	obterQuizzEspecifico(ID_DO_QUIZZ)
-	quizzRefreshing();
+	
 }
 
 
@@ -356,6 +356,7 @@ function armazenarQuizzAtual(response) {
 }
 
 function renderizarQuizzAtual() {
+	
 	for (let f = 0; f < quizzAtual.questions.length; f++) {
 		embaralharArray(quizzAtual.questions[f].answers)
 	}
@@ -437,6 +438,10 @@ function renderizarQuizzAtual() {
 		perguntas[k].setAttribute("style", `background-color: ${quizzAtual.questions[k].color};`);
 	}
 
+	const y = document.querySelectorAll(".questao");
+	for(let i = 1;i < y.length;i++){
+		y[i].classList.add("hidden");
+	}
 }
 
 function accessMyQuizz() {
@@ -449,6 +454,7 @@ function accessMyQuizz() {
 	quizzRefreshing()
 }
 let scroll = window.scroll(0,0);
+
 function scrollQuizz(){
 	window.scroll(0,900)
 }
@@ -466,6 +472,7 @@ function answerQuizz(elemento) {
 		for(let i = 0;i < todasPerguntas.length;i++){
 			if(questaoAtual === todasPerguntas[i]){
 				if(todasPerguntas[i+1] !== undefined){
+					todasPerguntas[i+1].classList.remove("hidden");
 					todasPerguntas[i+1].scrollIntoView();
 				}else{
 					document.querySelector(".resultados:not(.hidden)").scrollIntoView();
