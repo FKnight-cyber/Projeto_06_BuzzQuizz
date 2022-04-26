@@ -571,7 +571,7 @@ function reiniciarQuizz(){
 		errada[j].classList.remove("errada")
 	}
 	
-	document.querySelector(".boby_questresult").classList.add("hidden");
+	document.querySelector(".resultados").classList.toggle("hidden");
 	document.querySelector(".reloadquizz_button").classList.add("hidden");
 	document.querySelector(".homeback_button").classList.add("hidden");
 	quizzRefreshing();
