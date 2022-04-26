@@ -12,7 +12,7 @@ let acertos = 0;
 let questoesRespondidas = 0;
 let meusQuizzesID = [];
 const idSerializado = localStorage.getItem("id");
-
+let load = document.querySelector(".load").classList.add("hidden")
 checkMyQuizzes();
 obterQuizzes();
 
@@ -273,7 +273,6 @@ function criarNiveis() {
 			hasZero = true;
 		}
 	}
-
 	if (conditionsNotMet || !hasZero) {
 		return;
 	} else {
@@ -285,7 +284,6 @@ function criarNiveis() {
 				minValue: acertoPercentual[k].value
 			});
 		}
-
 		myQuizz['levels'] = arr;
 
 		document.querySelector(".imagem_final").innerHTML = `
@@ -294,6 +292,7 @@ function criarNiveis() {
 				<figcaption>${myQuizz.title}</figcaption>
 			</figure>
 		`
+		setTimeout(load,2000)
 		enviarQuizz();
 		quizzRefreshing()
 		document.querySelector(".pagequizz_3").classList.toggle("hidden");
@@ -428,8 +427,12 @@ function accessMyQuizz() {
 
 	quizzRefreshing()
 }
+let scroll = window.scroll(0,900);
 function scrollQuizz(){
-	window.scroll(0,900);
+	window.scroll(0,900)
+}
+function intervalScroll(){
+	setInterval(scrollQuizz(),2000)
 }
 function answerQuizz(elemento) {
 	const questaoAtual = elemento.parentNode.parentNode;
