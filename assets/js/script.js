@@ -341,7 +341,7 @@ function armazenarMeuQuizz(response) {
 function accessQuizz(elemento) {
 	ID_DO_QUIZZ = elemento.querySelector(".getID").innerHTML;
 	obterQuizzEspecifico(ID_DO_QUIZZ)
-	
+	quizzRefreshing()
 }
 
 
