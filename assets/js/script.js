@@ -37,6 +37,7 @@ function armazenarQuizzes(response) {
 	localStorage.setItem("id", myQuizzesIDSerializado);
 	checkMyQuizzes();
 	renderizarQuizzes();
+
 }
 
 function checkMyQuizzes() {
