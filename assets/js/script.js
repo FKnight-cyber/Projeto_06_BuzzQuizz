@@ -30,7 +30,7 @@ function armazenarQuizzes(response) {
 	geral = response.data
 	let arr = [];
 
-	for (let i = 0; i <= meusQuizzesID.length; i++){
+	for (let i = 0; i < meusQuizzesID.length; i++){
 		for (let k = 0; k < geral.length; k++){
 			arr.push(geral[k].id);
 		}
@@ -448,7 +448,7 @@ function accessMyQuizz() {
 
 	quizzRefreshing()
 }
-let scroll = window.scroll(0,900);
+let scroll = window.scroll(0,0);
 function scrollQuizz(){
 	window.scroll(0,900)
 }
