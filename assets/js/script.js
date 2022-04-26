@@ -373,7 +373,6 @@ function renderizarQuizzAtual() {
 					<h3>${quizzAtual.questions[i].title}</h3>
 				</article>
 				<section class="options">
-
 				</section>
 			</section>
 		`
