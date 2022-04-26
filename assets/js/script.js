@@ -237,10 +237,16 @@ function criarPerguntas() {
 					},
 				]
 			}
-			);
+			);	
+		}
+
+		for (let i = 0; i < totalDePerguntas; i++){
+			arr[i].answers = arr[i].answers.filter((elemento,index) => elemento.text !== '')
 		}
 		
+		console.log(arr)
 		myQuizz['questions'] = arr;
+
 		document.querySelector(".pagequizz_2").classList.toggle("hidden");
 		document.querySelector(".pagequizz_3").classList.toggle("hidden");
 		quizzRefreshing()
