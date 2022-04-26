@@ -502,7 +502,7 @@ function answerQuizz(elemento) {
 			if(questaoAtual === todasPerguntas[i]){
 				todasPerguntas[i+1].scrollIntoView();
 			}else{
-				document.querySelector(".resultados").scrollIntoView();
+				document.querySelector(".resultados:not(.hidden)").scrollIntoView();
 			}
 		}
 	},2000)
