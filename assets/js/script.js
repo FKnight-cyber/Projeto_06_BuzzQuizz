@@ -325,7 +325,7 @@ function armazenarMeuQuizz(response) {
 function accessQuizz(elemento) {
 	ID_DO_QUIZZ = elemento.querySelector(".getID").innerHTML;
 	obterQuizzEspecifico(ID_DO_QUIZZ)
-	quizzRefreshing()
+	quizzRefreshing();
 }
 
 
@@ -445,6 +445,18 @@ function answerQuizz(elemento) {
 	const myAnswer = elemento.querySelector("figcaption").innerHTML;
 	const correctAnswers = [];
 	let correctAnswer;
+
+	setTimeout(function(){
+		for(let i = 0;i < todasPerguntas.length;i++){
+			if(questaoAtual === todasPerguntas[i]){
+				if(todasPerguntas[i+1] !== undefined){
+					todasPerguntas[i+1].scrollIntoView();
+				}else{
+					document.querySelector(".resultados:not(.hidden)").scrollIntoView();
+				}
+			}
+		}
+	},2000)
 	
 	for (let i = 0; i < quizzAtual.questions.length; i++) {
 		for (let k = 0; k < quizzAtual.questions[i].answers.length; k++) {
@@ -498,15 +510,6 @@ function answerQuizz(elemento) {
 		calcularAcertos();
 		document.querySelector(".boby_questresult").classList.remove("hidden");
 	}
-	setTimeout(function(){
-		for(let i = 0;i < todasPerguntas.length;i++){
-			if(questaoAtual === todasPerguntas[i]){
-				todasPerguntas[i+1].scrollIntoView();
-			}else{
-				document.querySelector(".resultados:not(.hidden)").scrollIntoView();
-			}
-		}
-	},2000)
 }
 
 function calcularAcertos(){
@@ -567,6 +570,7 @@ function returnHome() {
 function reiniciarQuizz(){
 	const certa  = document.querySelectorAll(".certa");
 	const errada = document.querySelectorAll(".errada");
+	const todasPerguntas = document.querySelectorAll(".questao");
 	
 	for(let i = 0; i < certa.length;i++){
 		certa[i].onclick = function () {answerQuizz(this);};
@@ -578,8 +582,8 @@ function reiniciarQuizz(){
 		errada[j].classList.remove("opacidade")
 		errada[j].classList.remove("errada")
 	}
-	quizzRefreshing();
-	document.querySelector(".boby_questresult").classList.add("hidden").innerHTML= ``;
+	todasPerguntas[0].scrollIntoView();
+	document.querySelector(".boby_questresult").classList.add("hidden");
 }
 
 function quizzRefreshing() {
