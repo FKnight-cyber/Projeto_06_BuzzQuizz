@@ -411,6 +411,10 @@ h2{
     }
     .image_result{
         margin-left: 3%;
+        width: 100%;
+    }
+    .imagem_final{
+        width: 300px !important;
     }
     .questao{
         width: 98%;
@@ -420,7 +424,6 @@ h2{
     .result_nivel{
         width: 100%;
         display: inline-flex;
-        flex-direction: column;
         flex-wrap: wrap;
         align-content: space-around;
         justify-content: space-around;
@@ -429,25 +432,49 @@ h2{
     .result_text{
         margin-top: 5px;
     }
+    .load{
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        flex-wrap: nowrap;
+    }
     .pagequizz_3 {
         width: 100%;
     }
     .meus{
         justify-content: center;
     }
-    .tumb_quizzfinal{
+    .tumb_quizzfinal {
         animation: flipInX 1 normal;
         animation-duration: 1s;
         position: relative;
         margin-top: 50px;
-        margin-left: 10px;
+        margin-left: 0px !important;
         margin-right: 10px;
-        width: 300px;
+        width: 300px !important;
         height: 266px;
         display: flex;
     }
     .tumb_meusquizz{
         margin-right: 0px;
+    }
+    .result_text{
+        width: 100%;
+    }
+    .tumb_quizzfinal > img{
+        background: linear-gradient(180deg, rgba(255, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%);
+        border-radius: 5px;
+        width: 500px;
+        height: 190px !important;
+    }
+    .tumb_quizzfinal > figcaption{
+        left: 22px !important;
+        bottom: 80px !important;
     }
 }
 .pagequizz_2{
@@ -475,6 +502,31 @@ h2{
     justify-content: center;
     border-radius: 42px;
     background-color: #EC362D;
+}
+.load{
+    width: 100%;
+    height: 100vh;
+    margin-left: 10%;
+    margin-right: 10%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: nowrap;
+}
+.load_text{
+    margin-top: 5%;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #EC362D;
+}
+.load_gif{
+    width: 50%;
 }
 h4{
     margin-top: 10px;
@@ -610,8 +662,10 @@ h4{
 .tumb_quizzfinal > img{
     background: linear-gradient(180deg, rgba(255, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%);
     border-radius: 5px;
-    width: 300px;
-    height: 190px;
+    width: 500px;
+    height: 290px;
+    max-width: 500px;
+    min-width: 300px;
 }
 .tumb_quizz > figcaption{
     position: absolute;
@@ -626,9 +680,11 @@ h4{
     color: #FFFFFF;
 }
 .tumb_quizzfinal > figcaption{
+    margin-left: 3%;
+    margin-right: 10%;
     position: absolute;
     left: 12px;
-    bottom: 90px;
+    bottom: 10px;
     font-style: normal;
     font-weight: 400;
     font-size: 19px;
@@ -636,6 +692,9 @@ h4{
     display: flex;
     align-items: center;
     color: #FFFFFF;
+}
+.tumb_quizzfinal{
+    width: 500px;
 }
 
 .inputs_1{
@@ -646,6 +705,7 @@ h4{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
 .inputs_2{
+    width: 100%;
     background-color: red;
     border-radius: 42px;
 }
