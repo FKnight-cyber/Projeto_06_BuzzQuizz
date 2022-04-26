@@ -15,20 +15,40 @@ const idSerializado = localStorage.getItem("id");
 let load = document.querySelector(".load").classList.add("hidden")
 obterQuizzes();
 
-console.log(idSerializado)
+
 
 function obterQuizzes() {
+	if(localStorage.length!==0){
+		const idSerializado = localStorage.getItem("id");
+		meusQuizzesID = JSON.parse(idSerializado);
+	}
+	
 	axios.get(`${API}/quizzes`).then(armazenarQuizzes);
 }
 
 function armazenarQuizzes(response) {
 	geral = response.data
+	let arr = [];
+
+	for (let i = 0; i <= meusQuizzesID.length; i++){
+		for (let k = 0; k < geral.length; k++){
+			arr.push(geral[k].id);
+		}
+	}
+	
+	for (let i = 0; i < meusQuizzesID.length; i++){
+		if(!arr.includes(meusQuizzesID[i])){
+			let buscar = meusQuizzesID[i];
+			let indice = meusQuizzesID.indexOf(buscar);
+			meusQuizzesID.splice(indice, 1);
+		}
+	}
+	
 	for (let i = 0; i <= meusQuizzesID.length; i++) {
 		for (let k = 0; k < geral.length; k++) {
-			if (meusQuizzesID[i] === geral[k].id) {
+			if (meusQuizzesID[i] == geral[k].id) {
 				meusQuizzes.push(geral[k]);
 			} else {
-				meusQuizzesID.pop(geral[k].id);
 				quizzes.push(geral[k]);
 			}
 		}
@@ -41,9 +61,6 @@ function armazenarQuizzes(response) {
 }
 
 function checkMyQuizzes() {
-	if (localStorage.length !== 0) {
-		meusQuizzesID = JSON.parse(idSerializado);
-	}
 	if (meusQuizzesID.length !== 0) {
 		document.querySelector('.mylistquizz_none').classList.toggle("hidden");
 		document.querySelector('.meus').classList.toggle("hidden");
@@ -250,7 +267,6 @@ function criarPerguntas() {
 			arr[i].answers = arr[i].answers.filter((elemento,index) => elemento.text !== '')
 		}
 		
-		console.log(arr)
 		myQuizz['questions'] = arr;
 
 		document.querySelector(".pagequizz_2").classList.toggle("hidden");
@@ -313,7 +329,7 @@ function enviarQuizz() {
 }
 
 function deuErro() {
-	alert("eita");
+	alert("E nao deu");
 }
 
 function armazenarMeuQuizz(response) {

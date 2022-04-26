@@ -814,7 +814,11 @@ input{
     display: none !important;
 }
 
-.testando2,.testando3{
+.testando2{
+    display: none !important;
+}
+
+.testando3{
     display: none !important;
 }
 
@@ -822,7 +826,10 @@ input{
     display: none !important;
 }
 
-.content.selecionado .testando2,.testando3{
+.content.selecionado .testando2{
+    display: table !important;
+}
+.content.selecionado .testando3{
     display: table !important;
 }
 .content{
