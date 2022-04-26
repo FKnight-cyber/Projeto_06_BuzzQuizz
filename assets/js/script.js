@@ -440,7 +440,7 @@ function answerQuizz(elemento) {
 	const myAnswer = elemento.querySelector("figcaption").innerHTML;
 	const correctAnswers = [];
 	let correctAnswer;
-	scrollQuizz()
+	
 	for (let i = 0; i < quizzAtual.questions.length; i++) {
 		for (let k = 0; k < quizzAtual.questions[i].answers.length; k++) {
 			if (quizzAtual.questions[i].answers[k].isCorrectAnswer === true) {
@@ -492,6 +492,13 @@ function answerQuizz(elemento) {
 		questoesRespondidas = 0;
 		calcularAcertos();
 	}
+	setTimeout(function(){
+		for(let i = 0;i < todasPerguntas.length;i++){
+			if(questaoAtual === todasPerguntas[i]){
+				todasPerguntas[i+1].scrollIntoView();
+			}
+		}
+	},2000)
 }
 
 function calcularAcertos(){
