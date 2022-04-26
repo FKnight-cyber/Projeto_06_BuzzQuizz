@@ -605,6 +605,9 @@ function reiniciarQuizz(){
 		errada[j].classList.remove("opacidade")
 		errada[j].classList.remove("errada")
 	}
+	for(let i = 1;i<todasPerguntas.length;i++){
+		todasPerguntas[i].classList.add("hidden");
+	}
 	todasPerguntas[0].scrollIntoView();
 	document.querySelector(".boby_questresult").classList.add("hidden");
 }
